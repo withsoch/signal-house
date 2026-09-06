@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/ui/Reveal";
 import { StatCounter } from "@/components/StatCounter";
+import { PortraitImg } from "@/components/PortraitImg";
 
 export const metadata: Metadata = {
   title: "Kaitlin Malaspina, Brenna & Co. | Signal House Case Study",
@@ -150,9 +151,10 @@ export default function KaitlinMalaspinaPage() {
             style={{ animationDelay: "100ms" }}
           >
             <div className="aspect-[3/4] w-full overflow-hidden rounded border border-line">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D4E03AQHNiiko81qmAQ/profile-displayphoto-crop_800_800/B4EZkH3OJ3GoAI-/0/1756773540889?e=1782950400&v=beta&t=RBDDJIOTs9j5G85DH_3rrLbpkogSZ-CCyEfs85xbwzY"
+              <PortraitImg
+                src="/Kaitlin Malaspina.jpg"
                 alt="Kaitlin Malaspina"
+                accent="#4a2c6e"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>
@@ -209,9 +211,10 @@ export default function KaitlinMalaspinaPage() {
               </div>
 
               <div className="mt-10 aspect-[16/8] w-full overflow-hidden rounded">
-                <img
-                  src="https://media.licdn.com/dms/image/v2/D4E03AQHNiiko81qmAQ/profile-displayphoto-crop_800_800/B4EZkH3OJ3GoAI-/0/1756773540889?e=1782950400&v=beta&t=RBDDJIOTs9j5G85DH_3rrLbpkogSZ-CCyEfs85xbwzY"
+                <PortraitImg
+                  src="/Kaitlin Malaspina.jpg"
                   alt="Kaitlin Malaspina, Brenna & Co."
+                  accent="#4a2c6e"
                   style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "4px" }}
                 />
               </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/ui/Reveal";
 import { StatCounter } from "@/components/StatCounter";
+import { PortraitImg } from "@/components/PortraitImg";
 
 export const metadata: Metadata = {
   title: "Shahzad Akhtar, Strateasy Consulting | Signal House Case Study",
@@ -152,9 +153,10 @@ export default function ShahzadAkhtarPage() {
             style={{ animationDelay: "100ms" }}
           >
             <div className="aspect-[3/4] w-full overflow-hidden rounded border border-line">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D4D03AQEPW0neV8fQrA/profile-displayphoto-crop_800_800/B4DZkkgP2THsAI-/0/1757254059122?e=1782950400&v=beta&t=mgmnxulxv_s2Yuno-AdYbwJK7qA8imxV7c73EPYzI9s"
+              <PortraitImg
+                src="/Shahzad Akhtar.jpg"
                 alt="Shahzad Akhtar"
+                accent="#1a3a5c"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>
@@ -213,9 +215,10 @@ export default function ShahzadAkhtarPage() {
               </div>
 
               <div className="mt-10 aspect-[16/8] w-full overflow-hidden rounded">
-                <img
+                <PortraitImg
                   src="https://media.licdn.com/dms/image/v2/D4D22AQE1ZtJmC1JqsQ/feedshare-image-high-res/B4DZsC_vI.G4Ao-/0/1765281822593?e=1782950400&v=beta&t=t2Y34WcRtqCAaIsBIFEF9NaopH7QRl3nlQlD6l1yooE"
                   alt="Shahzad Akhtar, Strateasy Consulting"
+                  accent="#1a3a5c"
                   style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "4px" }}
                 />
               </div>

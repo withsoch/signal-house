@@ -258,7 +258,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     authorRole: "Founder & MD, Strateasy Consulting",
     accent: "#1a3a5c",
     initials: "SA",
-    image: "https://media.licdn.com/dms/image/v2/D4D03AQEPW0neV8fQrA/profile-displayphoto-crop_800_800/B4DZkkgP2THsAI-/0/1757254059122?e=1782950400&v=beta&t=mgmnxulxv_s2Yuno-AdYbwJK7qA8imxV7c73EPYzI9s",
+    image: "/Shahzad Akhtar.jpg",
     href: "/case-studies/shahzad-akhtar",
   },
   {
@@ -279,7 +279,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     authorRole: "Principal & Founder, Brenna & Co.",
     accent: "#4a2c6e",
     initials: "BC",
-    image: "https://media.licdn.com/dms/image/v2/D4E03AQHNiiko81qmAQ/profile-displayphoto-crop_800_800/B4EZkH3OJ3GoAI-/0/1756773540889?e=1782950400&v=beta&t=RBDDJIOTs9j5G85DH_3rrLbpkogSZ-CCyEfs85xbwzY",
+    image: "/Kaitlin Malaspina.jpg",
     href: "/case-studies/kaitlin-malaspina",
   },
 ];
