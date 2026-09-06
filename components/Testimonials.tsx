@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Reveal } from "@/components/ui/Reveal";
 import { CASE_STUDIES, type CaseStudy } from "@/lib/content";
+import { PortraitImg } from "@/components/PortraitImg";
 
 export function Testimonials() {
   const [current, setCurrent] = useState(0);
@@ -96,9 +97,10 @@ function Slide({
         style={{ background: study.accent }}
       >
         {study.image ? (
-          <img
+          <PortraitImg
             src={study.image}
             alt={study.company}
+            accent={study.accent}
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
           />
         ) : (

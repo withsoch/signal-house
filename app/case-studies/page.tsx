@@ -5,6 +5,7 @@ import { BookButton } from "@/components/BookButton";
 import { AuditButton } from "@/components/AuditButton";
 import { CTAS } from "@/lib/content";
 import AnimateIn from "@/components/AnimateIn";
+import { PortraitImg } from "@/components/PortraitImg";
 
 export const metadata: Metadata = {
   title: "Case Studies: Client Results | Signal House",
@@ -41,7 +42,7 @@ const CARDS = [
   },
   {
     initials: "Shahzad Akhtar - Strateasy Consulting",
-    image: "https://media.licdn.com/dms/image/v2/D4D03AQEPW0neV8fQrA/profile-displayphoto-crop_800_800/B4DZkkgP2THsAI-/0/1757254059122?e=1782950400&v=beta&t=mgmnxulxv_s2Yuno-AdYbwJK7qA8imxV7c73EPYzI9s",
+    image: "/Shahzad Akhtar.jpg",
     tags: ["Management Consulting"],
     title:
       "Turning 28 years of practitioner expertise into a LinkedIn presence that generates consulting pipeline",
@@ -54,7 +55,7 @@ const CARDS = [
   },
   {
     initials: "Kaitlin Malaspina - Brenna & Co.",
-    image: "https://media.licdn.com/dms/image/v2/D4E03AQHNiiko81qmAQ/profile-displayphoto-crop_800_800/B4EZkH3OJ3GoAI-/0/1756773540889?e=1782950400&v=beta&t=RBDDJIOTs9j5G85DH_3rrLbpkogSZ-CCyEfs85xbwzY",
+    image: "/Kaitlin Malaspina.jpg",
     tags: ["Business Architecture"],
     title:
       "Making a distinctive offer legible: how a Private Operating House built the channel to match the work",
@@ -90,12 +91,12 @@ export default function CaseStudiesPage() {
             {[
               { src: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb631aa9fc98e79ae2810_1714512298914.jpg", alt: "Gaia Ferrero" },
               { src: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb8c5358ef1ae4b6b238c_1674503443215.jpg", alt: "Biola Babawale" },
-              { src: "https://media.licdn.com/dms/image/v2/D4D03AQEPW0neV8fQrA/profile-displayphoto-crop_800_800/B4DZkkgP2THsAI-/0/1757254059122?e=1782950400&v=beta&t=mgmnxulxv_s2Yuno-AdYbwJK7qA8imxV7c73EPYzI9s", alt: "Shahzad Akhtar" },
-              { src: "https://media.licdn.com/dms/image/v2/D4E03AQHNiiko81qmAQ/profile-displayphoto-crop_800_800/B4EZkH3OJ3GoAI-/0/1756773540889?e=1782950400&v=beta&t=RBDDJIOTs9j5G85DH_3rrLbpkogSZ-CCyEfs85xbwzY", alt: "Kaitlin Malaspina" },
+              { src: "/Shahzad Akhtar.jpg", alt: "Shahzad Akhtar" },
+              { src: "/Kaitlin Malaspina.jpg", alt: "Kaitlin Malaspina" },
             ].map((f, i) => (
               <AnimateIn key={f.alt} delay={i * 100} direction="up">
                 <div style={{ overflow: "hidden", borderRadius: "12px", minHeight: 0 }}>
-                  <img
+                  <PortraitImg
                     src={f.src}
                     alt={f.alt}
                     style={{ width: "100%", height: "100%", minHeight: "200px", objectFit: "cover", objectPosition: "center top", display: "block" }}
@@ -120,7 +121,7 @@ export default function CaseStudiesPage() {
 
                   {/* portrait */}
                   <div className="shrink-0 self-stretch overflow-hidden" style={{ width: "40%", minWidth: 0 }}>
-                    <img
+                    <PortraitImg
                       src={card.image}
                       alt={card.initials}
                       style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: "320px", display: "block" }}
