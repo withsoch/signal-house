@@ -1,0 +1,153 @@
+// lib/blog.ts
+//
+// Markdown-backed blog content. Posts live as .md files in content/blog/ with
+// frontmatter (title, slug, date, category, featured, excerpt, image) and a
+// markdown body, committed there by the Soch SEO pipeline (n8n
+// gkNsOpDjnRF1SNGe). Parsed at build time with gray-matter.
+//
+// Keep this file identical across withsoch-web / signal-house / sochmarketing.
+
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+
+const BLOG_DIR = path.join(process.cwd(), "content/blog");
+
+export type BlogPost = {
+  slug: string;
+  title: string;
+  date: string;
+  category: string;
+  featured: boolean;
+  excerpt: string;
+  image: string;
+  body: string;
+};
+
+/**
+ * Frontmatter date as an ISO `YYYY-MM-DD` string.
+ *
+ * The pipeline writes `date: 2026-05-25` unquoted, so js-yaml hands
+ * gray-matter a real Date object and `String(...)` on that yields
+ * "Mon May 25 2026 …". Sorting those as strings orders posts by *weekday
+ * name*. Normalise to ISO here so the value is both sortable and safe to hand
+ * to `new Date()`.
+ */
+function isoDate(value: unknown): string {
+  if (value instanceof Date) {
+    return Number.isNaN(value.getTime()) ? "" : value.toISOString().slice(0, 10);
+  }
+  if (typeof value !== "string" && typeof value !== "number") return "";
+  const text = String(value).trim();
+  if (!text) return "";
+  if (/^\d{4}-\d{2}-\d{2}/.test(text)) return text.slice(0, 10);
+  const parsed = new Date(text);
+  return Number.isNaN(parsed.getTime()) ? text : parsed.toISOString().slice(0, 10);
+}
+
+/** Posts newest first. Undated posts sort last, then alphabetically by slug so
+ *  the build output is deterministic. */
+export function getAllPosts(): BlogPost[] {
+  if (!fs.existsSync(BLOG_DIR)) return [];
+
+  const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
+
+  const posts = files.map((file) => {
+    const raw = fs.readFileSync(path.join(BLOG_DIR, file), "utf8");
+    const { data, content } = matter(raw);
+
+    return {
+      slug: data.slug ?? file.replace(/\.md$/, ""),
+      title: data.title ?? "",
+      date: isoDate(data.date),
+      category: data.category ?? "",
+      featured: Boolean(data.featured),
+      excerpt: data.excerpt ?? "",
+      image: data.image ?? "",
+      body: content,
+    };
+  });
+
+  return posts.sort((a, b) => {
+    if (a.date !== b.date) {
+      if (!a.date) return 1;
+      if (!b.date) return -1;
+      return a.date < b.date ? 1 : -1;
+    }
+    return a.slug.localeCompare(b.slug);
+  });
+}
+
+export function getPostBySlug(slug: string): BlogPost | undefined {
+  return getAllPosts().find((post) => post.slug === slug);
+}
+
+export type Heading = { id: string; text: string };
+
+/**
+ * Anchor id for a heading. The table of contents and the rendered <h2> must
+ * both call this on the same text, or the links go nowhere.
+ */
+export function slugifyHeading(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+/**
+ * Section headings for the TOC rail, in document order.
+ *
+ * Normally the post's `##` headings. Some posts set every section as `####`,
+ * so we fall back to the shallowest level the post actually uses and those
+ * still get a rail.
+ *
+ * Deliberately does NOT de-duplicate repeated headings, so the id produced
+ * here always matches the one the renderer produces for the same text.
+ */
+export function getHeadings(body: string): Heading[] {
+  const found: { level: number; text: string }[] = [];
+  let inFence = false;
+
+  // Posts may be checked out with CRLF endings; without stripping the carriage
+  // return the end-of-line anchor below never matches.
+  for (const line of body.replace(/\r/g, "").split("\n")) {
+    if (/^\s*(```|~~~)/.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+
+    const match = line.match(/^(#{2,4})[ \t]+(.+?)[ \t]*#*[ \t]*$/);
+    if (!match) continue;
+
+    const text = match[2]
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1") // links -> their text
+      .replace(/[*_`]/g, "")
+      .trim();
+
+    if (text) found.push({ level: match[1].length, text });
+  }
+
+  if (found.length === 0) return [];
+
+  const topLevel = Math.min(...found.map((h) => h.level));
+  return found
+    .filter((h) => h.level === topLevel)
+    .map((h) => ({ id: slugifyHeading(h.text), text: h.text }));
+}
+
+export function formatPostDate(date: string): string {
+  if (!date) return "";
+  const parsed = new Date(date);
+  if (Number.isNaN(parsed.getTime())) return date;
+  return parsed.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
