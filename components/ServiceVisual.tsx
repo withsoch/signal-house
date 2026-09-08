@@ -147,6 +147,70 @@ function ContentVisual() {
   );
 }
 
+function CompanyPageVisual() {
+  const rows = [
+    { t: "Whitfield Advisory posted", w: "78%" },
+    { t: "3 employees reshared", w: "58%" },
+  ];
+  return (
+    <Stage>
+      <div className={`${card} overflow-hidden animate-float-a`}>
+        {/* cover band + logo tile */}
+        <div style={{ background: "#0a66c2", height: 68, position: "relative" }}>
+          <span
+            className="absolute flex items-center justify-center rounded-xl bg-white text-xs font-bold text-brand ring-1 ring-line"
+            style={{ width: 52, height: 52, bottom: -26, left: 18 }}
+          >
+            WA
+          </span>
+        </div>
+
+        <div style={{ padding: "34px 18px 18px" }}>
+          <div className="flex items-start justify-between gap-3">
+            <div className="leading-tight">
+              <p style={{ fontSize: 14, fontWeight: 700, color: "#1a1a1a" }}>Whitfield Advisory</p>
+              <p style={{ fontSize: 11, color: "#6b6560", marginTop: 4 }}>
+                Management Consulting · 4,182 followers
+              </p>
+            </div>
+            <span
+              className="shrink-0 rounded-full px-3 py-1 text-[0.65rem] font-semibold text-white"
+              style={{ background: "#0a66c2" }}
+            >
+              + Follow
+            </span>
+          </div>
+
+          <div className="mt-4 space-y-3 border-t border-line pt-3.5">
+            {rows.map((r) => (
+              <div key={r.t} className="flex items-center gap-2.5">
+                <span
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-[0.55rem] font-bold text-white"
+                  style={{ background: "#0a66c2" }}
+                >
+                  WA
+                </span>
+                <div className="flex-1">
+                  <p style={{ fontSize: 11, fontWeight: 600, color: "#1a1a1a" }}>{r.t}</p>
+                  <span className="mt-1.5 block">
+                    <Bar w={r.w} />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className={`${chip} -bottom-2 -right-1 w-32 animate-float-c`}>
+        <p className="text-[0.6rem] font-semibold text-muted">Page views</p>
+        <p className="mt-0.5 text-lg font-semibold text-leaf" style={{ fontFamily: "var(--font-display)" }}>
+          ↑ 3.4<span className="text-[0.8rem]">×</span>
+        </p>
+      </div>
+    </Stage>
+  );
+}
+
 function LeadsVisual() {
   return (
     <Stage>
@@ -317,6 +381,7 @@ function AuditVisual() {
 const VISUALS: Record<string, () => React.JSX.Element> = {
   "profile-optimisation": ProfileVisual,
   "content-writing": ContentVisual,
+  "company-page": CompanyPageVisual,
   "lead-generation": LeadsVisual,
   "personal-branding": BrandingVisual,
   "coaching-workshops": CoachingVisual,

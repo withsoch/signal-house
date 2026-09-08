@@ -6,7 +6,7 @@ import AnimateIn from "@/components/AnimateIn";
 export const metadata: Metadata = {
   title: "Services. LinkedIn Growth, End to End",
   description:
-    "Profile optimisation, content, lead generation, personal branding, coaching and audits. The full Signal House LinkedIn system for founders and senior executives.",
+    "Profile optimisation, content, company page marketing, lead generation, personal branding, coaching and audits. The full Signal House LinkedIn system for founders and senior executives.",
 };
 
 export default function ServicesPage() {
@@ -38,9 +38,11 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <AnimateIn>
-        <ServicesShowcase />
-      </AnimateIn>
+      {/* No AnimateIn wrapper here: this section is taller than 6.67x the
+          viewport on phones, so useScrollAnimation's 0.15 threshold could
+          never be met and the whole list stayed at opacity 0. Each service
+          row reveals individually via Reveal inside the component. */}
+      <ServicesShowcase />
     </>
   );
 }

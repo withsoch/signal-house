@@ -56,7 +56,7 @@ public/              # static assets
 | Route       | Purpose                                                       |
 | ----------- | ------------------------------------------------------------- |
 | `/`         | Home - hero, positioning, services, how-we-work, proof, CTA   |
-| `/services` | All six services in detail                                    |
+| `/services` | All seven services in detail                                  |
 | `/about`    | Who we are & what we believe                                  |
 | `/book`     | **Book a Discovery Call** (primary CTA)                       |
 | `/audit`    | **Get a Free LinkedIn Audit** (secondary CTA)                 |

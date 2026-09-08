@@ -97,8 +97,8 @@ export default function ServicesVenn() {
       </g>
       <g textAnchor="middle" className="h" fontSize="21">
         <text>
-          <tspan x="762" y="354">Content Writing</tspan>
-          <tspan x="762" y="380">&amp; Posting</tspan>
+          <tspan x="762" y="354">Content, Posting</tspan>
+          <tspan x="762" y="380">&amp; Company Pages</tspan>
         </text>
       </g>
 

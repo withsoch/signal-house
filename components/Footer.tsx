@@ -28,7 +28,7 @@ export function Footer() {
           </FooterCol>
 
           <FooterCol title="Services">
-            {SERVICES.slice(0, 5).map((s) => (
+            {SERVICES.slice(0, 6).map((s) => (
               <FooterLink key={s.slug} href={`/services#${s.slug}`}>
                 {s.title.replace("LinkedIn ", "")}
               </FooterLink>

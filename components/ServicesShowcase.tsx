@@ -10,6 +10,7 @@ import { SERVICES } from "@/lib/content";
 const LABELS: Record<string, string> = {
   "profile-optimisation": "Profile",
   "content-writing": "Content",
+  "company-page": "Company page",
   "lead-generation": "Lead gen",
   "personal-branding": "Branding",
   "coaching-workshops": "Coaching",

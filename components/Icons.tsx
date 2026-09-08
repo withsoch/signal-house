@@ -8,6 +8,7 @@ export type IconName =
   | "spark"
   | "compass"
   | "audit"
+  | "building"
   | "trend"
   | "arrow"
   | "check"
@@ -76,6 +77,15 @@ const PATHS: Record<IconName, React.ReactNode> = {
       <path d="M6 3.5h7l5 5V20a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 20V5A1.5 1.5 0 0 1 7.5 3.5Z" />
       <path d="M13 3.5V8.5h5" />
       <path d="M9 13.5l1.8 1.8L14.5 12" />
+    </>
+  ),
+  building: (
+    <>
+      <path d="M5 21V5.5A1.5 1.5 0 0 1 6.5 4h7A1.5 1.5 0 0 1 15 5.5V21" />
+      <path d="M15 10h3.5A1.5 1.5 0 0 1 20 11.5V21" />
+      <path d="M8 8h4M8 12h4M17 14h1" />
+      <path d="M9.5 21v-3.5h2V21" />
+      <path d="M3 21h18" />
     </>
   ),
   trend: (

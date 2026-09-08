@@ -76,6 +76,19 @@ export const SERVICES: Service[] = [
     ],
   },
   {
+    slug: "company-page",
+    icon: "building",
+    title: "Company Page Management & Marketing",
+    hook: "Your brand needs a presence, not a placeholder.",
+    description:
+      "Most company pages are a logo, a stale banner, and three posts from two years ago. Buyers check them anyway, right after they check you. We rebuild the page, run a branded content calendar alongside your personal posting, mobilise your team to amplify it, and report every month on what the page is actually doing.",
+    points: [
+      "Page rebuild: banner, tagline & about",
+      "Branded content calendar & posting",
+      "Monthly analytics & growth reporting",
+    ],
+  },
+  {
     slug: "lead-generation",
     icon: "target",
     title: "Lead Generation & Outreach",

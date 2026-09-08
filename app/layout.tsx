@@ -39,6 +39,7 @@ export const metadata: Metadata = {
     "LinkedIn lead generation",
     "LinkedIn positioning for founders and executives",
     "LinkedIn profile optimisation",
+    "LinkedIn company page management",
   ],
   openGraph: {
     title: "Signal House: LinkedIn Growth for Founders & CEOs",
