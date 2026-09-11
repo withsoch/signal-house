@@ -23,7 +23,9 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
-const SITE_URL = "https://sochcatalyst.com";
+// The live domain. metadataBase resolves every canonical and og:url against
+// this, so it has to match what the site is actually served on.
+const SITE_URL = "https://www.withsignalhouse.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
