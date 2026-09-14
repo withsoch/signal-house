@@ -1,4 +1,4 @@
-const CAL_URL = "https://cal.com/sochcatalyst/30min";
+const CAL_URL = "https://cal.com/consult-with-riz/linkedin-strategy-call";
 
 export function ConfirmationBookBtn() {
   return (
