@@ -71,9 +71,7 @@ Posting frequency matters more than most founders expect. Pages and profiles tha
 
 Content batching is the practice of planning, drafting, and scheduling multiple posts in a single focused session rather than producing content reactively. The operational pattern that works: block one ninety-minute session every two weeks. In that session, draft six posts across your three pillars, two per pillar. Schedule them for the following fortnight. Review engagement from the prior batch before the next session to identify which pillar is driving the most ICP-relevant interactions.
 
-Founders using AI-assisted drafting tools to accelerate the first-draft stage consistently report significant reductions in production time without losing their authentic voice. The rule of thumb here: AI produces the scaffold, the founder supplies the specific experience that makes the content credible and non-generic. Learn how [Soch Consulting automates founder-led outreach workflows](https://www.withsoch.com/case-studies) to see how this batching principle extends into the full go-to-market motion.
-
-**Further reading:** [AI workflow automation for go-to-market teams](https://www.withsoch.com/services)
+Founders using AI-assisted drafting tools to accelerate the first-draft stage consistently report significant reductions in production time without losing their authentic voice. The rule of thumb here: AI produces the scaffold, the founder supplies the specific experience that makes the content credible and non-generic.
 
 ## Step 3: Convert LinkedIn engagement into qualified pipeline
 
@@ -96,7 +94,7 @@ The sequence that works in practice: reply to every substantive comment within t
 
 ### Using automation to scale follow-up without losing the founder voice
 
-Manual tracking of post engagements works at low volume but breaks down past three or four posts per week. The solution is a lightweight CRM or tracking system where high-intent signals are logged as they occur. Each week, the founder or a designated team member reviews the signal log, prioritises the top five to ten interactions, and executes personalised outreach against each one. [AI workflow automation for go-to-market teams](https://www.withsoch.com/services) can handle the signal capture and CRM routing layer, ensuring no qualified engagement falls through. The founder's time is then reserved for the conversation layer only, the part where authenticity and judgment cannot be delegated.
+Manual tracking of post engagements works at low volume but breaks down past three or four posts per week. The solution is a lightweight CRM or tracking system where high-intent signals are logged as they occur. Each week, the founder or a designated team member reviews the signal log, prioritises the top five to ten interactions, and executes personalised outreach against each one. An automation layer can handle the signal capture and CRM routing, so no qualified engagement falls through. The founder's time is then reserved for the conversation layer only, the part where authenticity and judgment cannot be delegated.
 
 ## How to measure whether your LinkedIn strategy is actually working
 
@@ -106,17 +104,17 @@ The metrics most founders track, impressions, follower growth, and post likes, m
 
 ### Vanity metrics versus pipeline metrics: what to track and what to ignore
 
-**Impressions** — Category: Vanity · What It Tells You: How many feeds your post entered. *withSoch Recommended Action: Track trend only. Do not optimise for this directly..*
+**Impressions** — Category: Vanity · What It Tells You: How many feeds your post entered. *Recommended action: Track trend only. Do not optimise for this directly.*
 
-**Follower growth** — Category: Vanity · What It Tells You: General audience expansion. *withSoch Recommended Action: Segment by ICP job title monthly to assess quality..*
+**Follower growth** — Category: Vanity · What It Tells You: General audience expansion. *Recommended action: Segment by ICP job title monthly to assess quality.*
 
-**ICP profile visits post-publish** — Category: Pipeline · What It Tells You: Whether your content triggers buyer curiosity. *withSoch Recommended Action: Log every ICP-role visit within 48 hours of posting..*
+**ICP profile visits post-publish** — Category: Pipeline · What It Tells You: Whether your content triggers buyer curiosity. *Recommended action: Log every ICP-role visit within 48 hours of posting.*
 
-**Comment quality from ICP roles** — Category: Pipeline · What It Tells You: Whether the right buyers are engaging. *withSoch Recommended Action: Score comments weekly. Substantive ICP comments trigger outreach sequence..*
+**Comment quality from ICP roles** — Category: Pipeline · What It Tells You: Whether the right buyers are engaging. *Recommended action: Score comments weekly. Substantive ICP comments trigger outreach sequence.*
 
-**DM-to-call conversion rate** — Category: Pipeline · What It Tells You: Whether your engagement workflow converts. *withSoch Recommended Action: Track monthly. Below 20% signals a messaging or timing problem..*
+**DM-to-call conversion rate** — Category: Pipeline · What It Tells You: Whether your engagement workflow converts. *Recommended action: Track monthly. Below 20% signals a messaging or timing problem.*
 
-**Content-influenced pipeline** — Category: Pipeline · What It Tells You: Deals where prospect cited or engaged with content. *withSoch Recommended Action: Note in CRM at deal creation. Review quarterly for pillar effectiveness..*
+**Content-influenced pipeline** — Category: Pipeline · What It Tells You: Deals where prospect cited or engaged with content. *Recommended action: Note in CRM at deal creation. Review quarterly for pillar effectiveness.*
 
 ### A monthly LinkedIn review template for founders
 
@@ -149,4 +147,4 @@ A LinkedIn content strategy for founders only produces revenue when the engageme
 
 Start with your pillar audit this week. Map your last twenty posts against your three funnel stages, identify the gap, and restructure your next batch accordingly. Once the content layer is working, add the engagement-to-CRM workflow and begin tracking pipeline-proximate metrics monthly. The compounding effect becomes visible around the three-month mark for most founders who execute consistently.
 
-If you want to shortcut the build time on the automation layer, [see how withSoch designs AI workflow automation for go-to-market teams](https://www.withsoch.com/services) so the signal capture, CRM routing, and outreach sequencing run without founder intervention.
+If you would rather not build the signal capture and outreach layer yourself, [see how Signal House runs lead generation and outreach for founders](https://www.withsignalhouse.com/services), so every high-intent signal turns into a conversation without you tracking it by hand.
