@@ -9,11 +9,10 @@ import remarkGfm from "remark-gfm";
 import {
   getAllPosts,
   getPostBySlug,
-  formatPostDate,
   getHeadings,
   slugifyHeading,
 } from "@/lib/blog";
-import { PageHero } from "@/components/PageHero";
+import { BlogHero } from "@/components/BlogHero";
 import { ArticleToc } from "@/components/ArticleToc";
 import { Section } from "@/components/ui/Section";
 import { CtaBand } from "@/components/CtaBand";
@@ -68,24 +67,10 @@ export default async function BlogDetailPage({
 
   const headings = getHeadings(post.body);
   const hasToc = headings.length > 1;
-  const meta = [post.category, formatPostDate(post.date)].filter(Boolean).join("  ·  ");
 
   return (
     <main className="flex-1">
-      <PageHero title={post.title} intro={meta} />
-
-      {post.image && (
-        <Section pad="tight" className="bg-white">
-          <div className="relative mx-auto aspect-[16/9] w-full max-w-4xl overflow-hidden rounded-xl border border-line bg-mist">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={post.image}
-              alt={post.title}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
-        </Section>
-      )}
+      <BlogHero post={post} />
 
       <Section className="bg-white">
         <div

@@ -12,43 +12,38 @@ import { formatPostDate } from "@/lib/blog";
 function CategoryPill({ category }: { category: string }) {
   if (!category) return null;
   return (
-    <span className="inline-block w-fit shrink-0 whitespace-nowrap rounded-full bg-peach px-3 py-1 text-xs font-semibold leading-none text-brand-deep">
+    <span className="inline-block w-fit max-w-full shrink-0 truncate rounded-full bg-peach px-3.5 py-1.5 text-base font-medium leading-none text-brand">
       {category}
     </span>
   );
 }
 
-function CardImage({ post, sizes }: { post: BlogPost; sizes: string }) {
-  return (
-    <div className="relative aspect-[16/10] w-full overflow-hidden bg-mist">
-      {post.image && (
-        /* eslint-disable-next-line @next/next/no-img-element */
-        <img
-          src={post.image}
-          alt={post.title}
-          sizes={sizes}
-          loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-        />
-      )}
-    </div>
-  );
-}
-
-export function BlogCardLarge({ post }: { post: BlogPost }) {
+export function BlogCardFeatured({ post }: { post: BlogPost }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex flex-col gap-5 overflow-hidden rounded-xl border border-line bg-white transition-colors hover:border-ink/25"
+      className="group flex flex-col overflow-hidden rounded-xl border border-line bg-white transition-all duration-200 hover:border-ink/20 hover:shadow-card lg:flex-row"
     >
-      <CardImage post={post} sizes="(min-width: 1024px) 50vw, 100vw" />
-      <div className="flex flex-col gap-3 px-6 pb-6">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-          <CategoryPill category={post.category} />
-          <span className="text-sm text-muted">{formatPostDate(post.date)}</span>
-        </div>
-        <h2 className="text-h3">{post.title}</h2>
-        {post.excerpt && <p className="line-clamp-3 text-slate">{post.excerpt}</p>}
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-mist lg:aspect-auto lg:w-[52%] lg:min-h-[30rem]">
+        {post.image && (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={post.image}
+            alt={post.title}
+            loading="eager"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+          />
+        )}
+      </div>
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-4 p-8 sm:p-10 lg:p-12">
+        <CategoryPill category={post.category} />
+        <h2 className="text-h3 transition-colors group-hover:text-brand">
+          {post.title}
+        </h2>
+        {post.excerpt && (
+          <p className="line-clamp-3 text-slate">{post.excerpt}</p>
+        )}
+        <span className="text-base text-muted">{formatPostDate(post.date)}</span>
       </div>
     </Link>
   );
@@ -58,15 +53,25 @@ export function BlogCardSmall({ post }: { post: BlogPost }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex h-full flex-col gap-4 overflow-hidden rounded-xl border border-line bg-white transition-colors hover:border-ink/25"
+      className="group flex h-full items-stretch gap-4 overflow-hidden rounded-xl border border-line bg-white p-3 transition-all duration-200 hover:border-ink/20 hover:shadow-card"
     >
-      <CardImage post={post} sizes="(min-width: 1024px) 33vw, 100vw" />
-      <div className="flex flex-col gap-3 px-5 pb-5">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-          <CategoryPill category={post.category} />
-          <span className="text-sm text-muted">{formatPostDate(post.date)}</span>
-        </div>
-        <h3 className="text-h3">{post.title}</h3>
+      <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-lg bg-mist sm:w-28">
+        {post.image && (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={post.image}
+            alt={post.title}
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+          />
+        )}
+      </div>
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-2 py-1 pr-2">
+        <CategoryPill category={post.category} />
+        <h3 className="line-clamp-2 text-base font-medium leading-snug text-ink transition-colors group-hover:text-brand">
+          {post.title}
+        </h3>
+        <span className="text-sm text-muted">{formatPostDate(post.date)}</span>
       </div>
     </Link>
   );
