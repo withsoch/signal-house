@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
+import { jsonLd, SITE_URL as SEO_SITE_URL } from "@/lib/seo";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AuditModalProvider } from "@/context/AuditModalContext";
@@ -26,6 +27,16 @@ const fraunces = Fraunces({
 // The live domain. metadataBase resolves every canonical and og:url against
 // this, so it has to match what the site is actually served on.
 const SITE_URL = "https://www.withsignalhouse.com";
+
+/** Who the site is, for search engines and AI answer engines. */
+const SITE_ENTITY = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Signal House",
+  url: SEO_SITE_URL,
+  description: "Signal House is a LinkedIn positioning agency for founders and senior executives: narrative strategy, a content system, and the outreach engine that makes you the most credible voice in your space.",
+  sameAs: ["https://www.linkedin.com/in/consult-with-umair/"],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -70,6 +81,10 @@ export default function RootLayout({
       className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col overflow-x-hidden bg-white">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(SITE_ENTITY) }}
+        />
         <AuditModalProvider>
           <BookAutoOpen />
           <Header />

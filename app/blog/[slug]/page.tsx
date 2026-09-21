@@ -12,6 +12,7 @@ import {
   getHeadings,
   slugifyHeading,
 } from "@/lib/blog";
+import { absoluteUrl, faqFromMarkdown, jsonLd } from "@/lib/seo";
 import { BlogHero } from "@/components/BlogHero";
 import { ArticleToc } from "@/components/ArticleToc";
 import { Section } from "@/components/ui/Section";
@@ -32,6 +33,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -65,11 +67,45 @@ export default async function BlogDetailPage({
     notFound();
   }
 
+  // What this post is, for search engines and AI answer engines: an article
+  // with its dates and author, and its FAQ as questions and answers.
+  const faq = faqFromMarkdown(post.body);
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.excerpt || undefined,
+      ...(post.image ? { image: absoluteUrl(post.image) } : {}),
+      ...(post.date ? { datePublished: post.date, dateModified: post.date } : {}),
+      author: { "@type": "Organization", name: "Signal House", url: absoluteUrl("/") },
+      publisher: { "@type": "Organization", name: "Signal House", url: absoluteUrl("/") },
+      mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
+    },
+    ...(faq.length
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faq.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: { "@type": "Answer", text: item.answer },
+            })),
+          },
+        ]
+      : []),
+  ];
+
   const headings = getHeadings(post.body);
   const hasToc = headings.length > 1;
 
   return (
     <main className="flex-1">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(structuredData) }}
+      />
       <BlogHero post={post} />
 
       <Section className="bg-white">
