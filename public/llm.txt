@@ -1,0 +1,30 @@
+# Signal House
+
+> Signal House is a LinkedIn positioning agency for founders and senior executives: narrative strategy, a content system, and the outreach engine that makes you the most credible voice in your space.
+
+## Pages
+
+- [About](https://www.withsignalhouse.com/about)
+- [Services](https://www.withsignalhouse.com/services)
+- [Case studies](https://www.withsignalhouse.com/case-studies)
+- [Blog](https://www.withsignalhouse.com/blog)
+- [Audit](https://www.withsignalhouse.com/audit)
+- [Book](https://www.withsignalhouse.com/book)
+
+## Services
+
+- [LinkedIn Profile Optimisation](https://www.withsignalhouse.com/services#profile-optimisation): Win the visitor in the first five seconds.
+- [Content Writing & Posting](https://www.withsignalhouse.com/services#content-writing): Post every week without writing a word.
+- [Company Page Management & Marketing](https://www.withsignalhouse.com/services#company-page): Your brand needs a presence, not a placeholder.
+- [Lead Generation & Outreach](https://www.withsignalhouse.com/services#lead-generation): Booked calls, not vanity connections.
+- [Personal Branding Strategy](https://www.withsignalhouse.com/services#personal-branding): Be the name your market already trusts.
+- [Coaching & Workshops](https://www.withsignalhouse.com/services#coaching-workshops): Get your team posting with confidence.
+- [LinkedIn Growth Audit](https://www.withsignalhouse.com/services#growth-audit): Know exactly what is holding you back.
+
+## Contact
+
+- Email: umair@sochcatalyst.com
+- LinkedIn: https://www.linkedin.com/in/consult-with-umair/
+
+---
+Note: the canonical, auto-updating file (with the current blog post list) is served at /llms.txt.
