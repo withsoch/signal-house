@@ -1,5 +1,6 @@
 import { getAllPosts } from "@/lib/blog";
 import { SITE_URL } from "@/lib/seo";
+import { SERVICES, SITE } from "@/lib/content";
 
 // Rebuilt at build time, which is every deploy — so every new post.
 export const dynamic = "force-static";
@@ -12,6 +13,8 @@ export function GET() {
   const posts = getAllPosts()
     .map((p) => `- [${p.title}](${SITE_URL}/blog/${p.slug})${p.excerpt ? `: ${p.excerpt}` : ""}`)
     .join("\n");
+
+  const services = SERVICES.map((s) => `- [${s.title}](${SITE_URL}/services#${s.slug}): ${s.hook}`).join("\n");
 
   const body = `# Signal House
 
@@ -26,9 +29,18 @@ export function GET() {
 - [Audit](${SITE_URL}/audit)
 - [Book](${SITE_URL}/book)
 
+## Services
+
+${services}
+
 ## Posts
 
 ${posts}
+
+## Contact
+
+- Email: ${SITE.email}
+- LinkedIn: ${SITE.linkedin}
 `;
 
   return new Response(body, { headers: { "content-type": "text/plain; charset=utf-8" } });
