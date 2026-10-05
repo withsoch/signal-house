@@ -1,223 +1,125 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Reveal } from "@/components/ui/Reveal";
-import { CASE_STUDIES, type CaseStudy } from "@/lib/content";
+import { StatCounter } from "@/components/StatCounter";
+import { Icon } from "@/components/Icons";
 import { PortraitImg } from "@/components/PortraitImg";
+import { CASE_STUDIES, type CaseStudy } from "@/lib/content";
 
-export function Testimonials() {
-  const [current, setCurrent] = useState(0);
-  const count = CASE_STUDIES.length;
-  const next = () => setCurrent((c) => Math.min(c + 1, count - 1));
-  const prev = () => setCurrent((c) => Math.max(c - 1, 0));
-
+/**
+ * "29%" -> count up to 29 with a "%" suffix on desktop, where all four cards
+ * are on screen together. Below lg the cards side-scroll, and a counter
+ * waiting off-screen would read "0×" in the peek, so the number is static.
+ * Values that aren't a plain integer ("2,340+", "1.5 hrs") render as-is.
+ */
+function Metric({ value, className }: { value: string; className: string }) {
+  const style = { fontFamily: "var(--font-display)", fontWeight: 500 };
+  const m = /^(\d+)(\D*)$/.exec(value);
+  if (!m) return <span className={`block ${className}`} style={style}>{value}</span>;
   return (
-    <section className="py-20 sm:py-24 lg:py-28" style={{ backgroundColor: "#f9f9f9" }}>
-      <div className="container-x">
-        <Reveal className="max-w-2xl">
-          <h2 className="text-h2">Founders who stopped being invisible.</h2>
-        </Reveal>
-
-        {/* ── Carousel ── */}
-        <div className="mt-12 overflow-hidden rounded-2xl bg-white shadow-[0_2px_16px_rgba(0,0,0,0.08)] ring-1 ring-black/5">
-          {/* sliding track */}
-          <div
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${current * 100}%)` }}
-          >
-            {CASE_STUDIES.map((cs) => (
-              <Slide
-                key={cs.company}
-                study={cs}
-                onNext={next}
-                onPrev={prev}
-                isFirst={current === 0}
-                isLast={current === count - 1}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* ── Dot indicators ── */}
-        <div className="mt-5 flex items-center gap-2">
-          {CASE_STUDIES.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              aria-label={`Go to case study ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === current ? "w-6 bg-brand" : "w-1.5 bg-line hover:bg-slate"
-              }`}
-            />
-          ))}
-          <span className="ml-3 text-xs text-muted">
-            {current + 1} / {count}
-          </span>
-        </div>
-
-        <div className="mt-6 text-center">
-          <Link
-            href="/case-studies"
-            className="text-sm text-muted underline-offset-4 hover:underline"
-          >
-            View all case studies →
-          </Link>
-        </div>
-
-      </div>
-    </section>
+    <>
+      <span className={`block lg:hidden ${className}`} style={style}>
+        {m[1]}
+        <span className="text-brand">{m[2]}</span>
+      </span>
+      <StatCounter num={Number(m[1])} suffix={m[2]} className={`hidden lg:block ${className}`} style={style} />
+    </>
   );
 }
 
-function Slide({
-  study,
-  onNext,
-  onPrev,
-  isFirst,
-  isLast,
-}: {
-  study: CaseStudy;
-  onNext: () => void;
-  onPrev: () => void;
-  isFirst: boolean;
-  isLast: boolean;
-}) {
-  const router = useRouter();
+function ResultCard({ cs }: { cs: CaseStudy }) {
+  const metric = cs.metrics[0];
   return (
-    <div
-      className="relative grid w-full flex-shrink-0 lg:grid-cols-[2fr_3fr]"
-      style={{ minWidth: "100%", cursor: study.href ? "pointer" : "default" }}
-      onClick={() => study.href && router.push(study.href)}
+    <Link
+      href={cs.href ?? "/case-studies"}
+      className="group relative isolate flex aspect-[3/4] w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-3xl text-white ring-1 ring-white/10 transition-[flex-grow,box-shadow] duration-500 ease-out hover:shadow-[0_30px_60px_-30px_var(--color-brand)] sm:w-[46%] lg:aspect-auto lg:w-auto lg:flex-1 lg:hover:flex-[1.9] lg:focus-visible:flex-[1.9]"
     >
-      {/* ── Left: brand panel ── */}
-      <div
-        className="relative flex min-h-[14rem] flex-col items-start justify-end overflow-hidden p-8 lg:min-h-[28rem]"
-        style={{ background: study.accent }}
-      >
-        {study.image ? (
-          <PortraitImg
-            src={study.image}
-            alt={study.company}
-            accent={study.accent}
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}
-          />
-        ) : (
-          <span
-            className="absolute right-6 top-6 select-none text-[7rem] font-bold leading-none text-white/10"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            {study.initials}
-          </span>
-        )}
+      <div className="absolute inset-0 -z-10 overflow-hidden" style={{ background: cs.accent }}>
+        <PortraitImg
+          src={cs.image}
+          alt={`${cs.author}, ${cs.authorRole}`}
+          accent={cs.accent}
+          className="h-full w-full object-cover object-[50%_20%] transition-transform duration-700 ease-out group-hover:scale-105"
+        />
+      </div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#0b1f1a] via-[#0b1f1a]/55 to-transparent" />
 
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%", background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)", borderRadius: "0 0 0 16px" }} />
-
-        <div className="relative space-y-1" style={{ zIndex: 1 }}>
-          <p
-            className="font-bold text-white"
-            style={{ fontFamily: "var(--font-display)", fontSize: "18px", fontWeight: 700, textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}
-          >
-            {study.company}
-          </p>
-          <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.85)", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>{study.industry}</p>
-        </div>
+      <div className="flex items-start justify-between gap-2 p-4 sm:p-5">
+        <span className="line-clamp-2 rounded-full bg-white/15 px-2.5 py-1 text-[0.66rem] font-semibold uppercase tracking-[0.08em] text-white ring-1 ring-white/20 backdrop-blur-md">
+          {cs.scope}
+        </span>
+        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-ink transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
+          <Icon name="arrow" className="h-4 w-4 -rotate-45 transition-transform duration-300 group-hover:rotate-0" />
+        </span>
       </div>
 
-      {/* ── Right: content + arrow ── */}
-      <div className="relative flex flex-col justify-center gap-6 p-8 pr-16 lg:p-10 lg:pr-20">
+      <div className="mt-auto p-5 sm:p-6">
+        <Metric
+          value={metric.value}
+          className="text-[3.4rem] leading-none tracking-tight text-white tabular-nums sm:text-[4rem]"
+        />
+        <p className="mt-2 max-w-[16rem] text-[0.9rem] leading-snug text-white/85">{metric.label}</p>
 
-        {/* case study label + meta */}
-        <div>
-          <span className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-muted">
-            Case Study
-          </span>
-          <p className="mt-2 text-[0.85rem] text-slate">
-            {study.region}&nbsp;·&nbsp;{study.duration}&nbsp;·&nbsp;{study.scope}
-          </p>
-        </div>
-
-        {/* metrics grid */}
-        <div className="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-dashed border-line pt-6">
-          {study.metrics.map((m) => (
-            <div key={m.label}>
-              <p
-                className="text-[1.6rem] font-bold leading-none text-ink"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {m.value}
-              </p>
-              <p className="mt-1 text-[0.75rem] leading-snug text-slate">{m.label}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* quote + attribution */}
-        <div className="border-t border-dashed border-line pt-6">
-          <blockquote className="text-[1.05rem] leading-relaxed text-ink-soft">
-            &ldquo;{study.quote}&rdquo;
+        {/* the quote: visible on touch sizes, revealed as the card widens on desktop */}
+        <div className="grid transition-all duration-500 lg:grid-rows-[0fr] lg:opacity-0 lg:group-hover:grid-rows-[1fr] lg:group-hover:opacity-100 lg:group-focus-visible:grid-rows-[1fr] lg:group-focus-visible:opacity-100">
+          <blockquote className="overflow-hidden">
+            <p className="line-clamp-4 pt-4 text-[0.88rem] leading-relaxed text-white/90 lg:min-w-[20rem]">
+              &ldquo;{cs.quote}&rdquo;
+            </p>
           </blockquote>
-          <p className="mt-3 text-sm font-semibold text-ink">
-            {study.author},{" "}
-            <span className="font-normal text-slate">{study.authorRole}</span>
-          </p>
-          {study.href && (
-            <Link
-              href={study.href}
-              onClick={(e) => e.stopPropagation()}
-              className="mt-4 inline-block text-[14px] font-semibold hover:underline"
-              style={{ color: "#e8633e", textDecoration: "none" }}
-            >
-              View case study →
-            </Link>
-          )}
         </div>
 
-        {/* ── Next arrow - vertically centred on right edge ── */}
-        <button
-          onClick={(e) => { e.stopPropagation(); onNext(); }}
-          disabled={isLast}
-          aria-label="Next case study"
-          className={`absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate shadow-[0_1px_6px_rgba(0,0,0,0.12)] ring-1 ring-black/8 transition lg:right-6 ${
-            isLast
-              ? "opacity-40 cursor-default"
-              : "hover:bg-mist hover:text-ink active:scale-95"
-          }`}
-        >
-          <svg
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 20 20"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M7 4l6 6-6 6" />
-          </svg>
-        </button>
+        <div className="mt-4 border-t border-white/20 pt-3.5">
+          <p className="text-[0.9rem] font-semibold text-white">{cs.author}</p>
+          <p className="truncate text-[0.75rem] text-white/70">{cs.authorRole}</p>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+/**
+ * Real client engagements, face first: each card leads with the client's
+ * photo and their headline number, and links to the full case study.
+ */
+export function Testimonials() {
+  return (
+    <section id="results" className="relative scroll-mt-20 overflow-hidden bg-forest py-20 sm:py-24 lg:py-28">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="animate-aurora-a absolute -right-[10%] -top-[25%] h-[32rem] w-[32rem] rounded-full bg-brand/30 blur-[110px]" />
+        <div className="animate-aurora-c absolute -bottom-[30%] -left-[10%] h-[28rem] w-[28rem] rounded-full bg-linkedin/25 blur-[110px]" />
+        <div className="bg-dots absolute inset-0 [--dot:rgba(255,255,255,0.06)]" />
       </div>
 
-      {/* ── Prev arrow - vertically centred on left edge ── */}
-      <button
-        onClick={(e) => { e.stopPropagation(); onPrev(); }}
-        disabled={isFirst}
-        aria-label="Previous case study"
-        className={`absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate shadow-[0_1px_6px_rgba(0,0,0,0.12)] ring-1 ring-black/8 transition lg:left-6 ${
-          isFirst
-            ? "opacity-40 cursor-default"
-            : "hover:bg-mist hover:text-ink active:scale-95"
-        }`}
-      >
-        <svg
-          className="h-5 w-5"
-          fill="none"
-          viewBox="0 0 20 20"
-          stroke="currentColor"
-          strokeWidth={2}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13 4l-6 6 6 6" />
-        </svg>
-      </button>
-    </div>
+      <div className="container-x relative">
+        <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
+          <Reveal className="max-w-2xl">
+            <span className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-3 py-1.5 text-[0.8rem] font-semibold text-white ring-1 ring-white/15">
+              <span className="h-2 w-2 rotate-45 rounded-[2px] bg-brand" />
+              Client results
+            </span>
+            <h2 className="text-h2 mt-5 !text-white">Founders who stopped being invisible.</h2>
+            <p className="lead mt-5 !text-white/75">
+              Real engagements, real numbers. Hover a founder to hear it in
+              their words, or open the full case study.
+            </p>
+          </Reveal>
+          <Link
+            href="/case-studies"
+            className="group inline-flex shrink-0 items-center gap-2 rounded-lg px-1 py-2 text-sm font-semibold text-white transition-colors hover:text-brand"
+          >
+            All case studies
+            <Icon name="arrow" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </Link>
+        </div>
+
+        <Reveal delay={0.1}>
+          <div className="-mx-6 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] lg:mx-0 lg:h-[34rem] lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
+            {CASE_STUDIES.map((cs) => (
+              <ResultCard key={cs.company} cs={cs} />
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
   );
 }

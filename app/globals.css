@@ -289,8 +289,27 @@
   .animate-float-b { animation: float-soft 7s ease-in-out 0.6s infinite; }
   .animate-float-c { animation: float-soft 5.5s ease-in-out 1s infinite; }
 
+  /* Slow drifting colour blobs behind a section (pair with blur + opacity). */
+  @keyframes aurora-a {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(8%, 6%, 0) scale(1.12); }
+  }
+  @keyframes aurora-c {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(0.95); }
+    50% { transform: translate3d(6%, -8%, 0) scale(1.1); }
+  }
+  .animate-aurora-a { animation: aurora-a 22s ease-in-out infinite; will-change: transform; }
+  .animate-aurora-c { animation: aurora-c 20s ease-in-out infinite; will-change: transform; }
+
+  /* Dot grid. Colour comes from --dot so each section can tint it. */
+  .bg-dots {
+    background-image: radial-gradient(var(--dot, rgba(28, 43, 38, 0.1)) 1px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-marquee,
+    .animate-aurora-a, .animate-aurora-c,
     .animate-float-a, .animate-float-b, .animate-float-c { animation: none; }
     .animate-fade-up, .animate-pop { animation: none; opacity: 1; }
     html { scroll-behavior: auto; }
