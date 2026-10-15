@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { jsonLd, SITE_URL as SEO_SITE_URL } from "@/lib/seo";
@@ -92,31 +91,6 @@ export default function RootLayout({
           <Footer />
           <AuditModal />
         </AuditModalProvider>
-        <Script
-          id="videoask-config"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-      window.VIDEOASK_EMBED_CONFIG = {
-        "kind": "widget",
-        "url": "https://www.videoask.com/fbh8wkj96",
-        "options": {
-          "widgetType": "VideoThumbnailExtraLarge",
-          "text": "",
-          "backgroundColor": "#E8633E",
-          "position": "bottom-left",
-          "dismissible": false,
-          "videoPosition": "center center"
-        }
-      }
-    `,
-          }}
-        />
-        <Script
-          id="videoask-embed"
-          src="https://www.videoask.com/embed/embed.js"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );
