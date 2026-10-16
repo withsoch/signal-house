@@ -15,6 +15,10 @@ const SPEEDS = [1, 1.5, 2];
 // video fades in, then its answers appear a beat later.
 const FADE_OUT_MS = 250;
 const EASE = [0.22, 1, 0.36, 1] as const;
+// Circles line up with the page content edge (.container-x: 78rem max,
+// 1.5rem padding, 2.5rem from lg).
+const CIRCLE_POS =
+  "bottom-10 left-[calc(max(0px,(100%-78rem)/2)+1.5rem)] sm:bottom-14 lg:left-[calc(max(0px,(100%-78rem)/2)+2.5rem)]";
 
 function formatTime(s: number) {
   const t = Math.max(0, Math.floor(s || 0));
@@ -25,8 +29,9 @@ function formatTime(s: number) {
 export function IntroVideoWidget() {
   const { openModal } = useAuditModal();
   const reduceMotion = useReducedMotion();
-  const [open, setOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
+  // bubble = default circle, player = expanded video, mini = minimized circle.
+  const [view, setView] = useState<"bubble" | "player" | "mini">("bubble");
+  const open = view === "player";
   const [history, setHistory] = useState<string[]>([INTRO_VIDEO_STEPS[0].id]);
   const [muted, setMuted] = useState(false);
   const [captionsOn, setCaptionsOn] = useState(true);
@@ -43,6 +48,10 @@ export function IntroVideoWidget() {
   const panelRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const bubbleRef = useRef<HTMLVideoElement>(null);
+  // What the mini circle expands back to, and where the player left off.
+  const restoreRef = useRef<"bubble" | "player">("bubble");
+  const resumeRef = useRef<{ time: number; playing: boolean } | null>(null);
+  const pendingRef = useRef<(() => void) | null>(null);
 
   const step =
     INTRO_VIDEO_STEPS.find((s) => s.id === history[history.length - 1]) ??
@@ -53,17 +62,21 @@ export function IntroVideoWidget() {
   // autoplay isn't blocked before hydration.
   useEffect(() => {
     const v = bubbleRef.current;
-    if (open || hidden || !v) return;
+    if (open || !v) return;
     v.muted = true;
     v.play().catch(() => {});
-  }, [open, hidden]);
+  }, [open, view]);
 
-  // Expanded player: start each step from the top with sound. If the browser
-  // refuses unmuted playback, fall back to muted.
+  // Expanded player: start each step from the top with sound (or pick up
+  // where it was minimized). If the browser refuses unmuted playback, fall
+  // back to muted.
   useEffect(() => {
     const v = videoRef.current;
     if (!open || !v) return;
-    v.currentTime = 0;
+    const resume = resumeRef.current;
+    resumeRef.current = null;
+    v.currentTime = resume?.time ?? 0;
+    if (resume && !resume.playing) return;
     v.play().catch(() => {
       v.muted = true;
       setMuted(true);
@@ -71,12 +84,11 @@ export function IntroVideoWidget() {
     });
   }, [open, step.id]);
 
-  // Captions: load the step's WebVTT track hidden and render the active cue
-  // ourselves so it can be styled like the reference.
+  // Captions: follow the step's WebVTT track (set to hidden on load) and
+  // render the active cue ourselves.
   useEffect(() => {
     const track = videoRef.current?.textTracks[0];
     if (!open || !track) return;
-    track.mode = "hidden";
     const onCue = () => {
       const cues = track.activeCues;
       setCaption(
@@ -99,16 +111,6 @@ export function IntroVideoWidget() {
     if (timerRef.current) clearTimeout(timerRef.current);
   }, []);
 
-  const onEscape = useEffectEvent(() => close());
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && !document.fullscreenElement) onEscape();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
-
   function resetStep() {
     setTime({ current: 0, duration: 0 });
     setCaption("");
@@ -124,21 +126,57 @@ export function IntroVideoWidget() {
     videoRef.current?.pause();
     setLeaving(true);
     const run = () => {
+      pendingRef.current = null;
       resetStep();
       next();
     };
     if (reduceMotion) return run();
+    pendingRef.current = run;
     timerRef.current = setTimeout(run, FADE_OUT_MS);
   }
 
+  // Back to the default circle with a fresh session (after an answer that
+  // opens the audit popup or another page).
   function close() {
     if (timerRef.current) clearTimeout(timerRef.current);
+    pendingRef.current = null;
     videoRef.current?.pause();
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
-    setOpen(false);
+    setView("bubble");
     setHistory([INTRO_VIDEO_STEPS[0].id]);
     resetStep();
   }
+
+  // Shrink to the mini circle, keeping the step and playback position.
+  function minimize() {
+    if (open) {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      const pending = pendingRef.current;
+      const v = videoRef.current;
+      if (pending) {
+        // Minimized mid-transition: land on the step it was heading to.
+        pending();
+        resumeRef.current = { time: 0, playing: true };
+      } else if (v) {
+        resumeRef.current = { time: v.currentTime, playing: !v.paused && !v.ended };
+      }
+      v?.pause();
+      if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+      setReady(false);
+    }
+    restoreRef.current = open ? "player" : "bubble";
+    setView("mini");
+  }
+
+  const onEscape = useEffectEvent(() => minimize());
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && !document.fullscreenElement) onEscape();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   function goTo(id: string) {
     transition(() => setHistory((h) => [...h, id]));
@@ -180,14 +218,35 @@ export function IntroVideoWidget() {
     }
   }
 
-  if (hidden) return null;
+  if (view === "mini") {
+    return (
+      <div className={`fixed z-[60] ${CIRCLE_POS}`}>
+        <button
+          type="button"
+          onClick={() => setView(restoreRef.current)}
+          aria-label="Expand intro video"
+          className="relative block h-14 w-14 cursor-pointer overflow-hidden rounded-full bg-brand shadow-lift ring-[3px] ring-brand transition-transform duration-300 ease-out-soft hover:scale-[1.06] sm:h-16 sm:w-16"
+        >
+          <video
+            ref={bubbleRef}
+            src={INTRO_VIDEO_STEPS[0].video}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </button>
+      </div>
+    );
+  }
 
   if (!open) {
     return (
-      <div className="group fixed bottom-10 left-4 z-[60] sm:bottom-14 sm:left-6">
+      <div className={`group fixed z-[60] ${CIRCLE_POS}`}>
         <button
           type="button"
-          onClick={() => setOpen(true)}
+          onClick={() => setView("player")}
           aria-label="Play a short intro video from Umair"
           className="relative block cursor-pointer h-[5.5rem] w-[5.5rem] overflow-hidden rounded-full bg-brand shadow-lift ring-4 ring-brand transition-transform duration-300 ease-out-soft hover:scale-[1.04] sm:h-32 sm:w-32 sm:ring-[5px]"
         >
@@ -203,11 +262,11 @@ export function IntroVideoWidget() {
         </button>
         <button
           type="button"
-          onClick={() => setHidden(true)}
-          aria-label="Hide intro video"
+          onClick={minimize}
+          aria-label="Minimize intro video"
           className="absolute -right-1 cursor-pointer -top-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white shadow-card transition-opacity duration-200 hover:bg-ink-soft focus-visible:opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
         >
-          <Icon name="close" className="h-3.5 w-3.5" />
+          <Icon name="minus" className="h-3.5 w-3.5" />
         </button>
       </div>
     );
@@ -250,6 +309,12 @@ export function IntroVideoWidget() {
             playsInline
             preload="auto"
             onClick={togglePlay}
+            onLoadStart={(e) => {
+              // Load captions without native rendering; the active cue is
+              // drawn below so it can be styled like the reference.
+              const t = e.currentTarget.textTracks[0];
+              if (t) t.mode = "hidden";
+            }}
             onCanPlay={() => setReady(true)}
             onPlay={() => setPaused(false)}
             onPause={() => setPaused(true)}
@@ -321,11 +386,11 @@ export function IntroVideoWidget() {
           </button>
           <button
             type="button"
-            onClick={close}
-            aria-label="Close video"
+            onClick={minimize}
+            aria-label="Minimize video"
             className="inline-flex cursor-pointer h-8 w-8 items-center justify-center rounded-full bg-ink text-white transition-colors duration-200 hover:bg-ink-soft sm:hidden"
           >
-            <Icon name="close" className="h-4 w-4" />
+            <Icon name="minus" className="h-4 w-4" />
           </button>
         </div>
 
@@ -389,14 +454,14 @@ export function IntroVideoWidget() {
         </div>
       </div>
 
-      {/* close, sitting on the corner like the reference (desktop) */}
+      {/* minimize, sitting on the corner like the reference (desktop) */}
       <button
         type="button"
-        onClick={close}
-        aria-label="Close video"
+        onClick={minimize}
+        aria-label="Minimize video"
         className="absolute -right-3 cursor-pointer -top-3 hidden h-9 w-9 items-center justify-center rounded-full bg-ink text-white shadow-card transition-colors duration-200 hover:bg-ink-soft sm:inline-flex"
       >
-        <Icon name="close" className="h-4 w-4" />
+        <Icon name="minus" className="h-4 w-4" />
       </button>
     </motion.div>
   );

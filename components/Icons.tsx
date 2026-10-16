@@ -21,7 +21,8 @@ export type IconName =
   | "sound"
   | "muted"
   | "play"
-  | "expand";
+  | "expand"
+  | "minus";
 
 const base: SVGProps<SVGSVGElement> = {
   viewBox: "0 0 24 24",
@@ -148,6 +149,11 @@ const PATHS: Record<IconName, React.ReactNode> = {
   expand: (
     <>
       <path d="M4.5 9V4.5H9M15 4.5h4.5V9M19.5 15v4.5H15M9 19.5H4.5V15" />
+    </>
+  ),
+  minus: (
+    <>
+      <path d="M6 12h12" />
     </>
   ),
 };
