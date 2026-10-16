@@ -189,7 +189,7 @@ export function IntroVideoWidget() {
           type="button"
           onClick={() => setOpen(true)}
           aria-label="Play a short intro video from Umair"
-          className="relative block h-[5.5rem] w-[5.5rem] overflow-hidden rounded-full bg-brand shadow-lift ring-4 ring-brand transition-transform duration-300 ease-out-soft hover:scale-[1.04] sm:h-32 sm:w-32 sm:ring-[5px]"
+          className="relative block cursor-pointer h-[5.5rem] w-[5.5rem] overflow-hidden rounded-full bg-brand shadow-lift ring-4 ring-brand transition-transform duration-300 ease-out-soft hover:scale-[1.04] sm:h-32 sm:w-32 sm:ring-[5px]"
         >
           <video
             ref={bubbleRef}
@@ -205,7 +205,7 @@ export function IntroVideoWidget() {
           type="button"
           onClick={() => setHidden(true)}
           aria-label="Hide intro video"
-          className="absolute -right-1 -top-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white shadow-card transition-opacity duration-200 hover:bg-ink-soft focus-visible:opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
+          className="absolute -right-1 cursor-pointer -top-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white shadow-card transition-opacity duration-200 hover:bg-ink-soft focus-visible:opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
         >
           <Icon name="close" className="h-3.5 w-3.5" />
         </button>
@@ -214,11 +214,11 @@ export function IntroVideoWidget() {
   }
 
   const ctrlSolid =
-    "inline-flex h-8 min-w-8 items-center justify-center rounded-md bg-white px-1.5 text-[0.8rem] font-bold text-ink transition-colors duration-200 hover:bg-white/85";
+    "inline-flex cursor-pointer h-8 min-w-8 items-center justify-center rounded-md bg-white px-1.5 text-[0.8rem] font-bold text-ink transition-colors duration-200 hover:bg-white/85";
   const ctrlOutline =
-    "inline-flex h-8 min-w-8 items-center justify-center rounded-md px-1.5 text-[0.8rem] font-bold text-white ring-[1.5px] ring-inset ring-white transition-colors duration-200 hover:bg-white/15";
+    "inline-flex cursor-pointer h-8 min-w-8 items-center justify-center rounded-md px-1.5 text-[0.8rem] font-bold text-white ring-[1.5px] ring-inset ring-white transition-colors duration-200 hover:bg-white/15";
   const choiceCls =
-    "flex w-full items-center gap-3 rounded-[1.6rem] bg-black/35 px-4 py-3 text-left text-[1rem] font-semibold leading-snug text-white ring-1 ring-white/10 backdrop-blur-md transition-colors duration-200 hover:bg-black/50 sm:text-[1.05rem]";
+    "flex w-full cursor-pointer items-center gap-3 rounded-[1.6rem] bg-black/35 px-4 py-3 text-left text-[1rem] font-semibold leading-snug text-white ring-1 ring-white/10 backdrop-blur-md transition-colors duration-200 hover:bg-black/50 sm:text-[1.05rem]";
   const badgeCls =
     "inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white";
 
@@ -323,7 +323,7 @@ export function IntroVideoWidget() {
             type="button"
             onClick={close}
             aria-label="Close video"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-ink text-white transition-colors duration-200 hover:bg-ink-soft sm:hidden"
+            className="inline-flex cursor-pointer h-8 w-8 items-center justify-center rounded-full bg-ink text-white transition-colors duration-200 hover:bg-ink-soft sm:hidden"
           >
             <Icon name="close" className="h-4 w-4" />
           </button>
@@ -334,7 +334,7 @@ export function IntroVideoWidget() {
             type="button"
             onClick={togglePlay}
             aria-label={ended ? "Replay" : "Play"}
-            className="absolute left-1/2 top-[38%] inline-flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-ink shadow-card backdrop-blur-sm transition-colors duration-200 hover:bg-white"
+            className="absolute left-1/2 cursor-pointer top-[38%] inline-flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-ink shadow-card backdrop-blur-sm transition-colors duration-200 hover:bg-white"
           >
             <Icon name="play" className="ml-1 h-7 w-7 fill-current" />
           </button>
@@ -394,7 +394,7 @@ export function IntroVideoWidget() {
         type="button"
         onClick={close}
         aria-label="Close video"
-        className="absolute -right-3 -top-3 hidden h-9 w-9 items-center justify-center rounded-full bg-ink text-white shadow-card transition-colors duration-200 hover:bg-ink-soft sm:inline-flex"
+        className="absolute -right-3 cursor-pointer -top-3 hidden h-9 w-9 items-center justify-center rounded-full bg-ink text-white shadow-card transition-colors duration-200 hover:bg-ink-soft sm:inline-flex"
       >
         <Icon name="close" className="h-4 w-4" />
       </button>
