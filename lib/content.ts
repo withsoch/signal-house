@@ -385,9 +385,9 @@ export const INTRO_VIDEO_STEPS: IntroStep[] = [
     video: "/videos/intro/welcome.mp4",
     captions: "/videos/intro/welcome.vtt",
     choices: [
-      { label: "Grow on LinkedIn", action: { type: "step", to: "linkedin-growth" } },
-      { label: "Learn About Umair", action: { type: "step", to: "about-umair" } },
-      { label: "Get Help With My Profile", action: { type: "step", to: "profile-help" } },
+      { label: "I need help with my LinkedIn profile", action: { type: "step", to: "profile-help" } },
+      { label: "I want to grow on LinkedIn", action: { type: "step", to: "linkedin-growth" } },
+      { label: "I want to know more about you?", action: { type: "step", to: "about-umair" } },
     ],
   },
   {
