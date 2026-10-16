@@ -357,3 +357,68 @@ export const FAQS = [
     a: "Profile and positioning change in week one. Reach and inbound conversations usually build over the first 60-90 days.",
   },
 ];
+
+/**
+ * Floating intro-video widget (bottom-left). Recreates the old VideoAsk
+ * flow: the welcome video branches into three follow-up videos, each
+ * ending in CTAs. Videos and their caption files (WebVTT, from the
+ * VideoAsk transcriptions) live in /public/videos/intro.
+ */
+export type IntroAction =
+  | { type: "step"; to: string }
+  | { type: "book" }
+  | { type: "audit" }
+  | { type: "link"; href: string };
+
+export type IntroStep = {
+  id: string;
+  title: string;
+  video: string;
+  captions: string;
+  choices: { label: string; action: IntroAction }[];
+};
+
+export const INTRO_VIDEO_STEPS: IntroStep[] = [
+  {
+    id: "welcome",
+    title: "What are you looking for?",
+    video: "/videos/intro/welcome.mp4",
+    captions: "/videos/intro/welcome.vtt",
+    choices: [
+      { label: "Grow on LinkedIn", action: { type: "step", to: "linkedin-growth" } },
+      { label: "Learn About Umair", action: { type: "step", to: "about-umair" } },
+      { label: "Get Help With My Profile", action: { type: "step", to: "profile-help" } },
+    ],
+  },
+  {
+    id: "linkedin-growth",
+    title: "LinkedIn Growth",
+    video: "/videos/intro/linkedin-growth.mp4",
+    captions: "/videos/intro/linkedin-growth.vtt",
+    choices: [
+      { label: "Book a Discovery Call", action: { type: "book" } },
+      { label: "Show me some results first", action: { type: "link", href: "/case-studies" } },
+    ],
+  },
+  {
+    id: "about-umair",
+    title: "About Umair",
+    video: "/videos/intro/about-umair.mp4",
+    captions: "/videos/intro/about-umair.vtt",
+    choices: [
+      { label: "Get a free profile audit", action: { type: "audit" } },
+      { label: "Book a Discovery Call", action: { type: "book" } },
+      { label: "See client results", action: { type: "link", href: "/case-studies" } },
+    ],
+  },
+  {
+    id: "profile-help",
+    title: "Profile Help",
+    video: "/videos/intro/profile-help.mp4",
+    captions: "/videos/intro/profile-help.vtt",
+    choices: [
+      { label: "Yes, audit my profile", action: { type: "audit" } },
+      { label: "Tell me more about it first", action: { type: "link", href: "/about" } },
+    ],
+  },
+];

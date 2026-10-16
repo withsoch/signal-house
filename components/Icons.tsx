@@ -17,7 +17,11 @@ export type IconName =
   | "close"
   | "shield"
   | "clock"
-  | "chat";
+  | "chat"
+  | "sound"
+  | "muted"
+  | "play"
+  | "expand";
 
 const base: SVGProps<SVGSVGElement> = {
   viewBox: "0 0 24 24",
@@ -121,6 +125,29 @@ const PATHS: Record<IconName, React.ReactNode> = {
   chat: (
     <>
       <path d="M4.5 6.5A1.5 1.5 0 0 1 6 5h12a1.5 1.5 0 0 1 1.5 1.5v8A1.5 1.5 0 0 1 18 16H9l-4 3v-3H6a1.5 1.5 0 0 1-1.5-1.5Z" />
+    </>
+  ),
+  sound: (
+    <>
+      <path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4Z" />
+      <path d="M15.5 9a4 4 0 0 1 0 6" />
+      <path d="M18 6.5a7.5 7.5 0 0 1 0 11" />
+    </>
+  ),
+  muted: (
+    <>
+      <path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4Z" />
+      <path d="M16 10l4 4M20 10l-4 4" />
+    </>
+  ),
+  play: (
+    <>
+      <path d="M8 5.5v13l10.5-6.5Z" />
+    </>
+  ),
+  expand: (
+    <>
+      <path d="M4.5 9V4.5H9M15 4.5h4.5V9M19.5 15v4.5H15M9 19.5H4.5V15" />
     </>
   ),
 };

@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { AuditModalProvider } from "@/context/AuditModalContext";
 import { AuditModal } from "@/components/AuditModal";
 import { BookAutoOpen } from "@/components/BookAutoOpen";
+import { IntroVideoWidget } from "@/components/IntroVideoWidget";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -90,6 +91,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
           <AuditModal />
+          <IntroVideoWidget />
         </AuditModalProvider>
       </body>
     </html>
