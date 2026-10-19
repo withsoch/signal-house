@@ -280,10 +280,10 @@ export function ConfirmationContent() {
               <p style={{ fontSize: 12, color: "#6b6560", lineHeight: 1.6, margin: 0 }}>
                 Not a template. Not a tool. If you don&apos;t hear back within 24 hours, email{" "}
                 <a
-                  href="mailto:umair@sochcatalyst.com"
+                  href="mailto:umair@withsignalhouse.com"
                   style={{ color: "#e8633e", textDecoration: "none", fontWeight: 600 }}
                 >
-                  umair@sochcatalyst.com
+                  umair@withsignalhouse.com
                 </a>
               </p>
             </div>

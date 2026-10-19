@@ -89,10 +89,10 @@ export function AuditModal() {
         closeModal();
         router.push("/confirmation");
       } else {
-        setSubmitError("Something went wrong. Please email us at umair@sochcatalyst.com");
+        setSubmitError("Something went wrong. Please email us at umair@withsignalhouse.com");
       }
     } catch {
-      setSubmitError("Something went wrong. Please email us at umair@sochcatalyst.com");
+      setSubmitError("Something went wrong. Please email us at umair@withsignalhouse.com");
     } finally {
       setSubmitting(false);
     }
