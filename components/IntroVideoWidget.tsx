@@ -15,10 +15,8 @@ const SPEEDS = [1, 1.5, 2];
 // video fades in, then its answers appear a beat later.
 const FADE_OUT_MS = 250;
 const EASE = [0.22, 1, 0.36, 1] as const;
-// Circles line up with the page content edge (.container-x: 78rem max,
-// 1.5rem padding, 2.5rem from lg).
-const CIRCLE_POS =
-  "bottom-10 left-[calc(max(0px,(100%-78rem)/2)+1.5rem)] sm:bottom-14 lg:left-[calc(max(0px,(100%-78rem)/2)+2.5rem)]";
+// Circles sit in the bottom-left corner of the screen.
+const CIRCLE_POS = "bottom-10 left-5 sm:bottom-14 sm:left-8";
 
 function formatTime(s: number) {
   const t = Math.max(0, Math.floor(s || 0));
