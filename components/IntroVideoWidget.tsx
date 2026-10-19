@@ -75,7 +75,10 @@ export function IntroVideoWidget() {
     resumeRef.current = null;
     v.currentTime = resume?.time ?? 0;
     if (resume && !resume.playing) return;
-    v.play().catch(() => {
+    v.play().catch((err: DOMException) => {
+      // Only autoplay blocking warrants muting; a pause during start-up
+      // also rejects play() and must be left alone.
+      if (err?.name !== "NotAllowedError") return;
       v.muted = true;
       setMuted(true);
       v.play().catch(() => {});
