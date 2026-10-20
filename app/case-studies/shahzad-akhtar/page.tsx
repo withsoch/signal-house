@@ -214,9 +214,9 @@ export default function ShahzadAkhtarPage() {
                 </p>
               </div>
 
-              <div className="mt-10 aspect-[16/8] w-full overflow-hidden rounded">
+              <div className="mt-10 aspect-[4/1] w-full overflow-hidden rounded">
                 <PortraitImg
-                  src="https://media.licdn.com/dms/image/v2/D4D22AQE1ZtJmC1JqsQ/feedshare-image-high-res/B4DZsC_vI.G4Ao-/0/1765281822593?e=1782950400&v=beta&t=t2Y34WcRtqCAaIsBIFEF9NaopH7QRl3nlQlD6l1yooE"
+                  src="/Shahzad Akhtar overview.jpg"
                   alt="Shahzad Akhtar, Strateasy Consulting"
                   accent="#1a3a5c"
                   style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "4px" }}

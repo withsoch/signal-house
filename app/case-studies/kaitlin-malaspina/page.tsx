@@ -152,10 +152,10 @@ export default function KaitlinMalaspinaPage() {
           >
             <div className="aspect-[3/4] w-full overflow-hidden rounded border border-line">
               <PortraitImg
-                src="/Kaitlin Malaspina.jpg"
+                src="/Kaitlin Malaspina hero.png"
                 alt="Kaitlin Malaspina"
                 accent="#4a2c6e"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }}
               />
             </div>
           </div>
@@ -212,10 +212,10 @@ export default function KaitlinMalaspinaPage() {
 
               <div className="mt-10 aspect-[16/8] w-full overflow-hidden rounded">
                 <PortraitImg
-                  src="/Kaitlin Malaspina.jpg"
+                  src="/Kaitlin Malaspina overview.jpg"
                   alt="Kaitlin Malaspina, Brenna & Co."
                   accent="#4a2c6e"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "4px" }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 47%", borderRadius: "4px" }}
                 />
               </div>
             </Reveal>
