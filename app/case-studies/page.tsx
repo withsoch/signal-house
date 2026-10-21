@@ -80,19 +80,6 @@ const CARDS = [
     href: "/case-studies/ayda-ahmed",
   },
   {
-    initials: "Dr Kafa Lee - Arami Women’s Health",
-    image: "/Kafa Lee.jpg",
-    tags: ["Women’s Health"],
-    title:
-      "Building peer credibility for a women’s health GP on LinkedIn",
-    stats: [
-      { value: "3×", label: "Daily impressions in 5 weeks" },
-      { value: "192", label: "New followers in 33 days" },
-      { value: "415", label: "Targeted connection requests" },
-    ],
-    href: "/case-studies/kafa-lee",
-  },
-  {
     initials: "Navin Ramharak - Build With Nav",
     image: "/Navin Ramharak.jpg",
     tags: ["AI Training"],
@@ -104,6 +91,19 @@ const CARDS = [
       { value: "149", label: "New followers in 30 days (from 48)" },
     ],
     href: "/case-studies/navin-ramharak",
+  },
+  {
+    initials: "Jon Appino - Contract Diagnostics",
+    image: "/Jon Appino.jpg",
+    tags: ["Physician Contracts"],
+    title:
+      "Giving a physician contract specialist a LinkedIn presence built around the people who refer him",
+    stats: [
+      { value: "9", label: "Posts published in 5 weeks" },
+      { value: "460", label: "Targeted connection requests" },
+      { value: "49", label: "Comments in his market" },
+    ],
+    href: "/case-studies/jon-appino",
   },
 ];
 

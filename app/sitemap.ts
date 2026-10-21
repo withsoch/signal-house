@@ -10,7 +10,7 @@ import { SITE_URL } from "@/lib/seo";
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
-    "", "/about", "/services", "/case-studies", "/case-studies/biola-babawale", "/case-studies/gaia-antonescu", "/case-studies/kaitlin-malaspina", "/case-studies/shahzad-akhtar", "/case-studies/ayda-ahmed", "/case-studies/kafa-lee", "/case-studies/navin-ramharak", "/blog", "/audit", "/book",
+    "", "/about", "/services", "/case-studies", "/case-studies/biola-babawale", "/case-studies/gaia-antonescu", "/case-studies/kaitlin-malaspina", "/case-studies/shahzad-akhtar", "/case-studies/ayda-ahmed","/case-studies/navin-ramharak", "/case-studies/jon-appino", "/blog", "/audit", "/book",
     
   ].map((route) => ({ url: `${SITE_URL}${route}` }));
 

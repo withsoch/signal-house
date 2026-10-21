@@ -4,95 +4,91 @@ import { StatCounter } from "@/components/StatCounter";
 import { PortraitImg } from "@/components/PortraitImg";
 
 export const metadata: Metadata = {
-  title: "Dr Kafa Lee, Arami Women's Health | Signal House Case Study",
+  title: "Jon Appino, Contract Diagnostics | Signal House Case Study",
   description:
-    "How Signal House restarted Dr Kafa Lee's LinkedIn and pointed it at the clinicians who refer to her: 3× daily impressions and 192 new followers in the first five weeks.",
+    "How Signal House repositioned Jon Appino, founder of Contract Diagnostics, on LinkedIn: a new profile, a four-pillar content plan, and a steady programme of posting, commenting and targeted outreach.",
 };
 
 const HERO_STATS = [
-  { num: 3, suffix: "×", label: "Daily impressions vs. the five weeks before" },
-  { num: 192, suffix: "", label: "New followers, 14 Sep – 16 Oct 2026" },
-  { num: 415, suffix: "", label: "Targeted connection requests to referrers and allied health" },
+  { num: 9, suffix: "", label: "Posts published, 28 Apr – 2 Jun 2026" },
+  { num: 460, suffix: "", label: "Targeted connection requests to physicians" },
+  { num: 49, suffix: "", label: "Comments on posts in his market" },
 ];
 
 const META = [
-  { label: "Industry", value: "Healthcare · Women's Health" },
-  { label: "Region", value: "Melbourne, Australia" },
-  { label: "Duration", value: "Since September 2026 (ongoing)" },
+  { label: "Industry", value: "Physician Contract Consulting" },
+  { label: "Region", value: "United States" },
+  { label: "Duration", value: "March – June 2026" },
   {
     label: "Service",
     value:
-      "LinkedIn Profile Optimisation · Content Writing & Posting · Company Page Content · Engagement & Outreach",
+      "LinkedIn Profile Optimisation · Content Writing & Posting · Engagement & Outreach",
   },
 ];
 
 const PROBLEMS = [
-  "Her posting had stalled. Her last post went out on 27 August 2026, and by mid-September there had been nothing new for 17 days. On LinkedIn, every quiet stretch costs reach.",
-  "Posts weren't starting conversations. Of her ten most recent posts, seven drew no comments, and only two carried a clear call to action.",
-  "The profile undersold the expertise. The headline and Experience section didn't make her clinical focus or her clinic obvious to a referring clinician, and there was no booking link.",
+  "Posts weren't landing. Between February and March 2026, 19 posts averaged 1 like and no comments.",
+  "The content had no steady rhythm. All 19 posts were videos, published in bursts on a handful of days rather than on a regular schedule.",
+  "The profile didn't do the introducing. The headline was generic, the Featured section was empty, and the custom profile URL hadn't been set.",
 ];
 
 const FRAMEWORK = [
   {
     no: "01",
-    title: "Audit, Audiences & Voice · September 2026",
-    body: "We audited the profile and recent content and defined three audiences: referring GPs and GP partners in Melbourne and regional Victoria, allied health collaborators such as psychologists, pelvic floor physios and dietitians, and women's health media and event hosts. Her tone-of-voice guide set the rules: clinically sharp, conversationally loose, story first.",
+    title: "Audit & Audiences · March 2026",
+    body: "We audited the profile and content, then defined three audiences: the referral professionals who send physicians his way (physician-focused financial advisors, recruiters and program directors), residents and fellows facing their first contracts, and established physicians reviewing their compensation.",
   },
   {
     no: "02",
-    title: "Profile Rewrite · September 2026",
-    body: "We rewrote her headline, About and Experience sections around her clinical focus and the referral relationships she wanted to build, and designed a new banner to match.",
+    title: "Profile Rewrite · March – April 2026",
+    body: "We rewrote his headline, About and Experience sections around his specialism in physician contracts and compensation. Jon reviewed and approved each section.",
   },
   {
     no: "03",
-    title: "Content Engine · From 18 September 2026",
-    body: "Four pillars: Clinical Pattern Recognition, Longevity & Functional Medicine, Medicare & Systems Advocacy, and Founder Journey. Sixteen posts went out on her profile between 18 September and 19 October, alongside educational posts for the Arami company page.",
+    title: "Content Engine · From 28 April 2026",
+    body: "Four pillars: Contract Reality, Compensation Truth, Referral Partner Signal and Founder's View, written in a casually authoritative, story-first and plain-spoken voice. Twelve themes and 52 approved post ideas, with nine posts published between 28 April and 2 June.",
   },
   {
     no: "04",
-    title: "Peer Network Building · From 22 September 2026",
-    body: "We sent 415 targeted connection requests to referring GPs and allied health clinicians from a researched list of 673, and posted 32 comments on posts by creators her audiences follow, so each new post reached more of the right people.",
+    title: "Network Building · From 25 April 2026",
+    body: "We sent 460 targeted connection requests to physicians in his core audiences between 27 April and 3 June, and posted 49 comments on posts by physician-focused creators and companies between 25 April and 21 May.",
   },
 ];
 
 const RESULTS = [
   {
-    num: 3,
-    suffix: "×",
-    headline: "Daily impressions.",
-    body: "158.6 a day from 14 September to 16 October 2026, up from 49.4 a day over the 38 days before (7 August to 13 September).",
-  },
-  {
-    num: 192,
+    num: 9,
     suffix: "",
-    headline: "New followers in 33 days.",
-    body: "Compared with 60 in the 38 days before content began. Total followers stood at 584 on 16 October 2026.",
+    headline: "Posts published.",
+    body: "Between 28 April and 2 June 2026, drawn from a bank of 52 approved ideas across four content pillars.",
   },
   {
-    num: 415,
+    num: 460,
     suffix: "",
     headline: "Targeted connection requests sent.",
-    body: "To referring GPs and allied health clinicians between 22 September and 19 October 2026.",
+    body: "To physicians in his core audiences, between 27 April and 3 June 2026.",
+  },
+  {
+    num: 49,
+    suffix: "",
+    headline: "Comments in his market.",
+    body: "On posts by physician-focused creators and companies, between 25 April and 21 May 2026.",
   },
 ];
 
 const TABLE_ROWS = [
-  { metric: "Posting", before: "Last post 27 Aug; 17-day gap", after: "16 posts, 18 Sep – 19 Oct" },
-  { metric: "Daily impressions", before: "49.4 (7 Aug – 13 Sep)", after: "158.6 (14 Sep – 16 Oct)" },
-  { metric: "Weekly impressions", before: "151–154 (weeks ending 4 & 11 Sep)", after: "1,828–2,192 (weeks ending 9 & 16 Oct)" },
-  { metric: "Total engagements", before: "74 (7 Aug – 13 Sep)", after: "165 (14 Sep – 16 Oct)" },
-  { metric: "Engagement rate", before: "3.94% (7 Aug – 13 Sep)", after: "3.15% (14 Sep – 16 Oct)" },
-  { metric: "New followers", before: "60 (38 days)", after: "192 (33 days)" },
-  { metric: "Most-viewed post", before: "524 impressions", after: "2,537 impressions" },
+  { metric: "Headline", before: "Generic (“Empowering Physicians…”)", after: "Rewritten and approved by Jon" },
+  { metric: "Posting", before: "19 video posts in bursts (Feb – Mar)", after: "9 posts, 28 Apr – 2 Jun" },
+  { metric: "Content plan", before: "100% video", after: "4 pillars · 12 themes · 52 approved ideas" },
 ];
 
 const TAKEAWAYS = [
-  "Consistency was the first win. Moving from a stalled feed to a steady weekly rhythm more than tripled daily impressions within five weeks.",
-  "Reach grew faster than engagement. Total engagements more than doubled, but engagement rate dipped as posts reached people who didn't know her yet. Turning that new reach into conversations is what we are watching next.",
-  "It is still early. Referrals and bookings are not captured in this data, so we will report those outcomes once there is enough history to measure them.",
+  "Audiences came first. Naming three specific groups, with referral professionals at the top, shaped the profile, the content pillars and the outreach.",
+  "Approval kept it in his voice. Every profile section was reviewed and signed off by Jon before it was used.",
+  "This case study covers the strategy and the work delivered. It doesn't include performance results.",
 ];
 
-export default function KafaLeePage() {
+export default function JonAppinoPage() {
   return (
     <div className="bg-white">
 
@@ -106,27 +102,27 @@ export default function KafaLeePage() {
               className="animate-fade-up inline-flex items-center rounded bg-peach px-3 py-1 text-xs font-bold text-brand-dark"
               style={{ animationDelay: "0ms" }}
             >
-              Women&rsquo;s Health
+              Physician Contracts
             </span>
 
             <h1
               className="animate-fade-up mt-5 text-display text-[clamp(2rem,1.2rem+2.6vw,3.1rem)]"
               style={{ animationDelay: "140ms" }}
             >
-              Building peer credibility for a women&rsquo;s health GP on
-              LinkedIn
+              Giving a physician contract specialist a LinkedIn presence
+              built around the people who refer him
             </h1>
 
             <p
               className="animate-fade-up lead mt-6 text-muted"
               style={{ animationDelay: "210ms" }}
             >
-              Dr Kafa Lee, founder of Arami Women&rsquo;s Health in Melbourne, is
-              a GP with a special interest in perimenopause, menopause, PMDD and
-              ADHD in women. Her LinkedIn had gone quiet. We rebuilt her
-              positioning for the clinicians who refer to her and restarted a
-              consistent posting rhythm across her profile and the Arami
-              company page.
+              Jon Appino, founder of Contract Diagnostics, helps physicians
+              understand and negotiate their employment contracts and
+              compensation. His LinkedIn wasn&rsquo;t reflecting that
+              expertise. We repositioned his profile, built a content plan
+              around four pillars, and ran a steady programme of posting,
+              commenting and outreach.
             </p>
 
             {/* stat rows */}
@@ -160,10 +156,10 @@ export default function KafaLeePage() {
           >
             <div className="aspect-[3/4] w-full overflow-hidden rounded border border-line">
               <PortraitImg
-                src="/Kafa Lee.jpg"
-                alt="Dr Kafa Lee"
-                accent="#6b2c4a"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                src="/Jon Appino.jpg"
+                alt="Jon Appino"
+                accent="#2c5c6b"
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }}
               />
             </div>
           </div>
@@ -205,27 +201,24 @@ export default function KafaLeePage() {
               <h2 className="text-h2">The context behind the work.</h2>
               <div className="mt-8 space-y-5 text-[1rem] leading-relaxed text-slate">
                 <p>
-                  Dr Kafa Lee is a women&rsquo;s health GP and Board Certified
-                  Lifestyle Medicine Physician. She founded Arami Women&rsquo;s
-                  Health, an in-person clinic in East Melbourne with telehealth
-                  across Australia, built around longer consultations: a full
-                  hour for a first appointment.
+                  Jon founded Contract Diagnostics in 2011, a physician
+                  contract consultancy providing specialised services
+                  nationwide across the United States. Before that he founded
+                  NewCloud Medical and spent 22 years in pharma and biotech.
                 </p>
                 <p>
-                  For her, LinkedIn isn&rsquo;t mainly a patient channel. Its job
-                  is peer credibility: being known by the GPs, psychologists,
-                  physiotherapists and other clinicians who refer women to her.
-                  She came to Signal House in September 2026 to build that
-                  presence and keep it consistent.
+                  He came to Signal House in March 2026 to make his LinkedIn
+                  work harder: to reach the physicians who need contract
+                  guidance, and the professionals who refer them.
                 </p>
               </div>
 
               <div className="mt-10 aspect-[16/8] w-full overflow-hidden rounded">
                 <PortraitImg
-                  src="/Kafa Lee overview.jpg"
-                  alt="Dr Kafa Lee at The Age Melbourne Assembly"
-                  accent="#6b2c4a"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 55%", borderRadius: "4px" }}
+                  src="/Jon Appino overview.png"
+                  alt="Contract Diagnostics webinar with Jon Appino: Physician Negotiation Strategies for 2026"
+                  accent="#2c5c6b"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "4px" }}
                 />
               </div>
             </Reveal>
@@ -247,7 +240,7 @@ export default function KafaLeePage() {
 
             <div>
               <Reveal>
-                <h2 className="text-h2">What she came to us with.</h2>
+                <h2 className="text-h2">What he came to us with.</h2>
               </Reveal>
 
               <Reveal delay={0.05}>
@@ -331,20 +324,20 @@ export default function KafaLeePage() {
         </div>
       </section>
 
-      {/* ── Results ── */}
+      {/* ── What we delivered ── */}
       <section className="border-t border-line py-16 sm:py-20 lg:py-24">
         <div className="container-x">
           <div className="grid gap-10 lg:grid-cols-[11rem_1fr] lg:gap-16">
 
             <div className="lg:sticky lg:top-28 lg:self-start">
               <span className="text-[0.68rem] font-bold uppercase tracking-widest text-muted">
-                Results
+                Delivered
               </span>
             </div>
 
             <div>
               <Reveal>
-                <h2 className="text-h2">The first five weeks.</h2>
+                <h2 className="text-h2">What we delivered.</h2>
               </Reveal>
 
               <Reveal delay={0.05}>
@@ -382,7 +375,7 @@ export default function KafaLeePage() {
                     <thead>
                       <tr className="bg-cream">
                         <th className="px-5 py-3 text-left text-[0.68rem] font-bold uppercase tracking-widest text-muted">
-                          Metric
+                          Area
                         </th>
                         <th className="px-5 py-3 text-left text-[0.68rem] font-bold uppercase tracking-widest text-muted">
                           Before
@@ -408,11 +401,9 @@ export default function KafaLeePage() {
                   </table>
                 </div>
                 <p className="mt-4 text-xs leading-relaxed text-muted">
-                  Source: LinkedIn native analytics, compiled weekly by Signal
-                  House. Weeks run Saturday to Friday. Engagement rate is
-                  engagements divided by impressions. Engagement rate is shown as
-                  measured, including where it fell. Figures are as of 16
-                  October 2026. The engagement is ongoing.
+                  Source: Signal House strategy document and content tracker
+                  for this engagement. Activity figures cover 25 April to 3
+                  June 2026.
                 </p>
               </Reveal>
 
