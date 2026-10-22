@@ -15,8 +15,8 @@ const SPEEDS = [1, 1.5, 2];
 // video fades in, then its answers appear a beat later.
 const FADE_OUT_MS = 250;
 const EASE = [0.22, 1, 0.36, 1] as const;
-// Circles sit in the bottom-left corner of the screen.
-const CIRCLE_POS = "bottom-10 left-5 sm:bottom-14 sm:left-8";
+// Circles sit near the bottom-left corner.
+const CIRCLE_POS = "bottom-6 left-10 sm:bottom-10 sm:left-16";
 
 function formatTime(s: number) {
   const t = Math.max(0, Math.floor(s || 0));
@@ -226,17 +226,14 @@ export function IntroVideoWidget() {
           type="button"
           onClick={() => setView(restoreRef.current)}
           aria-label="Expand intro video"
-          className="relative block h-14 w-14 cursor-pointer overflow-hidden rounded-full bg-brand shadow-lift ring-[3px] ring-brand transition-transform duration-300 ease-out-soft hover:scale-[1.06] sm:h-16 sm:w-16"
+          // 24px circle inside a 44px tap area; the negative margin keeps the
+          // visible circle on the same corner as the full-size one.
+          className="group/mini -m-2.5 flex h-11 w-11 cursor-pointer items-center justify-center"
         >
-          <video
-            ref={bubbleRef}
-            src={INTRO_VIDEO_STEPS[0].video}
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+          {/* Same look as the minimize button, with a plus. */}
+          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white shadow-card transition-colors duration-200 group-hover/mini:bg-ink-soft">
+            <Icon name="plus" className="h-3.5 w-3.5" />
+          </span>
         </button>
       </div>
     );

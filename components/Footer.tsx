@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Logo } from "@/components/Logo";
+import Image from "next/image";
 import { Icon } from "@/components/Icons";
 import { NAV, SERVICES, SITE } from "@/lib/content";
 import { AuditFooterLink } from "@/components/AuditFooterLink";
@@ -12,7 +12,15 @@ export function Footer() {
         {/* link columns */}
         <div className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="max-w-xs">
-            <Logo variant="light" />
+            <Link href="/" aria-label="Signal House home" className="inline-flex">
+              <Image
+                src="/footer-logo.png"
+                alt="Signal House"
+                width={600}
+                height={600}
+                className="h-16 w-16 rounded-xl"
+              />
+            </Link>
             <p className="mt-4 text-sm leading-relaxed text-white/60">
               A LinkedIn agency for founders and senior executives. We run your profile,
               content and outreach, so the platform brings you work.
