@@ -72,7 +72,7 @@ Most changes need only **one file**:
 | Copy, services, stats, testimonials, nav   | `lib/content.ts`                                     |
 | The booking calendar (Calendly/TidyCal)    | Set `NEXT_PUBLIC_SCHEDULER_URL` (see below)          |
 | Brand colours & shadows                    | `app/globals.css` → the `@theme` block               |
-| Fonts                                      | `next/font` imports in `app/layout.tsx` (Inter + Fraunces) |
+| Fonts                                      | `next/font` imports in `app/layout.tsx` (Inter + Poppins) |
 | Logo                                       | `components/Logo.tsx` (placeholder wordmark + mark)  |
 | Page layout / section order                | the relevant `app/*/page.tsx`                         |
 | A section's markup                         | the matching component in `components/`              |
@@ -106,7 +106,7 @@ These are intentionally fake and must be swapped for real content:
 - **Testimonials**, **client logos**, and **stats** → `lib/content.ts`
 - **Logo** → `components/Logo.tsx`
 - **Brand colours/fonts** → currently HubSpot-inspired (orange + warm cream,
-  Inter + Fraunces); finalise in `app/globals.css` and `app/layout.tsx`.
+  Inter + Poppins); finalise in `app/globals.css` and `app/layout.tsx`.
 - **Contact email / LinkedIn URL** → `SITE` object in `lib/content.ts`
 
 ---

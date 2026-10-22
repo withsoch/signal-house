@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { jsonLd, SITE_URL as SEO_SITE_URL } from "@/lib/seo";
 import { Header } from "@/components/Header";
@@ -15,11 +15,11 @@ const inter = Inter({
   display: "swap",
 });
 
-// Editorial serif for headlines - the HubSpot brand voice.
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+// Geometric sans for headlines.
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -78,7 +78,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${inter.variable} ${poppins.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col overflow-x-hidden bg-white">
         <script

@@ -9,7 +9,7 @@ export default function ServicesVenn() {
 
       <style>{`
         .promise {
-          font-family: var(--font-fraunces, Georgia, serif);
+          font-family: var(--font-poppins, sans-serif);
           font-weight: 600;
           fill: #FBF4E7;
         }
