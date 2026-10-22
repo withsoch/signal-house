@@ -39,6 +39,7 @@ export function Footer() {
           <FooterCol title="Get started">
             <BookFooterLink />
             <AuditFooterLink />
+            <FooterLink href="/score">LinkedIn Signal Score</FooterLink>
             <FooterLink href={`mailto:${SITE.email}`}>{SITE.email}</FooterLink>
           </FooterCol>
         </div>

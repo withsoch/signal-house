@@ -16,7 +16,7 @@ type FormData = {
 type Errors = Partial<Record<keyof FormData, string>>;
 
 export function AuditModal() {
-  const { isOpen, closeModal } = useAuditModal();
+  const { isOpen, closeModal, extra } = useAuditModal();
   const router = useRouter();
   const backdropRef = useRef<HTMLDivElement>(null);
   const [form, setForm] = useState<FormData>({
@@ -88,6 +88,7 @@ export function AuditModal() {
           linkedInProfileURL: form.linkedInUrl,
           roleInBusiness: form.roleCompany,
           timestamp: new Date().toISOString(),
+          ...(extra ?? {}),
         }),
       });
       if (res.ok) {
