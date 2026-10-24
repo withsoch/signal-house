@@ -27,7 +27,8 @@ function formatTime(s: number) {
 export function IntroVideoWidget() {
   const { openModal } = useAuditModal();
   const reduceMotion = useReducedMotion();
-  // bubble = default circle, player = expanded video, mini = minimized circle.
+  // bubble = default circle, player = expanded video, mini = tab docked to
+  // the left edge (always expands back to the bubble).
   const [view, setView] = useState<"bubble" | "player" | "mini">("bubble");
   const open = view === "player";
   const [history, setHistory] = useState<string[]>([INTRO_VIDEO_STEPS[0].id]);
@@ -46,8 +47,7 @@ export function IntroVideoWidget() {
   const panelRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const bubbleRef = useRef<HTMLVideoElement>(null);
-  // What the mini circle expands back to, and where the player left off.
-  const restoreRef = useRef<"bubble" | "player">("bubble");
+  // Where the player left off when minimized.
   const resumeRef = useRef<{ time: number; playing: boolean } | null>(null);
   const pendingRef = useRef<(() => void) | null>(null);
 
@@ -148,7 +148,7 @@ export function IntroVideoWidget() {
     resetStep();
   }
 
-  // Shrink to the mini circle, keeping the step and playback position.
+  // Dock to the left edge, keeping the step and playback position.
   function minimize() {
     if (open) {
       if (timerRef.current) clearTimeout(timerRef.current);
@@ -165,7 +165,6 @@ export function IntroVideoWidget() {
       if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
       setReady(false);
     }
-    restoreRef.current = open ? "player" : "bubble";
     setView("mini");
   }
 
@@ -221,27 +220,44 @@ export function IntroVideoWidget() {
 
   if (view === "mini") {
     return (
-      <div className={`fixed z-[60] ${CIRCLE_POS}`}>
-        <button
+      <div className="fixed bottom-8 left-0 z-[60] sm:bottom-12">
+        {/* Snaps in from off-screen with a little overshoot, like it's being
+            pulled onto the edge. The extra left padding (offset by -ml-3)
+            keeps the tab flush with the edge while it overshoots or nudges
+            out on hover. */}
+        <motion.button
           type="button"
-          onClick={() => setView(restoreRef.current)}
-          aria-label="Expand intro video"
-          // 24px circle inside a 44px tap area; the negative margin keeps the
-          // visible circle on the same corner as the full-size one.
-          className="group/mini -m-2.5 flex h-11 w-11 cursor-pointer items-center justify-center"
+          onClick={() => setView("bubble")}
+          aria-label="Show intro video from Umair"
+          initial={reduceMotion ? false : { x: "-100%" }}
+          animate={{ x: 0 }}
+          whileHover={reduceMotion ? undefined : { x: 4 }}
+          transition={{ type: "spring", stiffness: 520, damping: 17 }}
+          className="-ml-3 flex cursor-pointer items-center rounded-r-full bg-brand py-1 pl-3.5 pr-1 shadow-card"
         >
-          {/* Same look as the minimize button, with a plus. */}
-          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white shadow-card transition-colors duration-200 group-hover/mini:bg-ink-soft">
-            <Icon name="plus" className="h-3.5 w-3.5" />
+          <span className="relative block h-8 w-8 overflow-hidden rounded-full ring-[1.5px] ring-white/80 sm:h-9 sm:w-9">
+            <video
+              src={`${INTRO_VIDEO_STEPS[0].video}#t=0.5`}
+              muted
+              playsInline
+              preload="metadata"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
           </span>
-        </button>
+        </motion.button>
       </div>
     );
   }
 
   if (!open) {
     return (
-      <div className={`group fixed z-[60] ${CIRCLE_POS}`}>
+      <motion.div
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ type: "spring", stiffness: 380, damping: 22 }}
+        style={{ transformOrigin: "left center" }}
+        className={`group fixed z-[60] ${CIRCLE_POS}`}
+      >
         <button
           type="button"
           onClick={() => setView("player")}
@@ -266,7 +282,7 @@ export function IntroVideoWidget() {
         >
           <Icon name="minus" className="h-3.5 w-3.5" />
         </button>
-      </div>
+      </motion.div>
     );
   }
 
