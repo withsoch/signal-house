@@ -22,7 +22,8 @@ export function GET() {
 
   const caseStudies = CASE_STUDIES.map((c) => {
     const metrics = c.metrics.map((m) => `${m.value} ${m.label}`).join(", ");
-    return `- **${c.company}** (${c.industry}, ${c.duration} engagement): ${metrics}. "${c.quote}" — ${c.author}, ${c.authorRole}`;
+    const quote = c.quote ? ` "${c.quote}"` : "";
+    return `- **${c.company}** (${c.industry}, ${c.duration} engagement): ${metrics}.${quote} — ${c.author}, ${c.authorRole}`;
   }).join("\n");
 
   const faqs = FAQS.map((f) => `**${f.q}**\n${f.a}`).join("\n\n");

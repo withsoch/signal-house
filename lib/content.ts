@@ -202,7 +202,9 @@ export type CaseStudy = {
   duration: string;
   scope: string;
   metrics: { value: string; label: string }[];
-  quote: string;
+  // Client quote, when we have one. Without it the card shows `headline`.
+  quote?: string;
+  headline?: string;
   author: string;
   authorRole: string;
   accent: string;
@@ -295,6 +297,63 @@ export const CASE_STUDIES: CaseStudy[] = [
     initials: "BC",
     image: "/Kaitlin Malaspina.jpg",
     href: "/case-studies/kaitlin-malaspina",
+  },
+  {
+    company: "Climate Tech Outreach",
+    industry: "Climate Tech & Decarbonisation · Australia",
+    region: "Australia",
+    duration: "Since August 2026",
+    scope: "Profile, content & outreach",
+    metrics: [
+      { value: "703", label: "New followers in 6.5 weeks" },
+      { value: "5×", label: "Engagement rate vs. August" },
+      { value: "37%", label: "Followers in renewable energy manufacturing" },
+    ],
+    headline: "Repositioning an outreach specialist for Australia’s climate tech founders.",
+    author: "Ayda Ahmed",
+    authorRole: "Outreach specialist, climate tech",
+    accent: "#1f8a66",
+    initials: "AA",
+    image: "/Ayda Ahmed.jpg",
+    href: "/case-studies/ayda-ahmed",
+  },
+  {
+    company: "Build With Nav",
+    industry: "AI Training & Education · Canada",
+    region: "Canada",
+    duration: "Since August 2026",
+    scope: "Profile, content & outreach",
+    metrics: [
+      { value: "172%", label: "More impressions in 30 days" },
+      { value: "162", label: "Engagements in 30 days (from 24)" },
+      { value: "149", label: "New followers in 30 days (from 48)" },
+    ],
+    headline: "Repositioning a serial operator as the founder who builds with AI, not just talks about it.",
+    author: "Navin Ramharak",
+    authorRole: "Founder, Build With Nav",
+    accent: "#1f7a8c",
+    initials: "NR",
+    image: "/Navin Ramharak.jpg",
+    href: "/case-studies/navin-ramharak",
+  },
+  {
+    company: "Contract Diagnostics",
+    industry: "Physician Contract Consulting · United States",
+    region: "United States",
+    duration: "3 months",
+    scope: "Profile, content & outreach",
+    metrics: [
+      { value: "460", label: "Targeted connection requests to physicians" },
+      { value: "9", label: "Posts published in 5 weeks" },
+      { value: "49", label: "Comments on posts in his market" },
+    ],
+    headline: "Giving a physician contract specialist a LinkedIn presence built around the people who refer him.",
+    author: "Jon Appino",
+    authorRole: "Founder, Contract Diagnostics",
+    accent: "#33403b",
+    initials: "JA",
+    image: "/Jon Appino.jpg",
+    href: "/case-studies/jon-appino",
   },
 ];
 
