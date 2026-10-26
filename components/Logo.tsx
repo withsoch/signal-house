@@ -11,7 +11,7 @@ export function Logo({
   // "dark" variant = full-color logo on light bg (navbar); "light" variant = white logo on dark bg (footer)
   const { src, width, height, size } = variant === "light"
     ? { src: "/logos/footer-logo.png", width: 14791, height: 3305, size: "h-11" }
-    : { src: "/logos/updated-navbar-trimmed.png", width: 1200, height: 232, size: "h-8 md:h-9" };
+    : { src: "/logos/updated-navbar-trimmed.png", width: 1200, height: 232, size: "h-[1.875rem] md:h-[2.125rem]" };
 
   return (
     <Link href="/" aria-label="Signal House home" className={`inline-flex items-center ${className}`}>
