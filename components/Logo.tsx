@@ -9,18 +9,18 @@ export function Logo({
   variant?: "dark" | "light";
 }) {
   // "dark" variant = full-color logo on light bg (navbar); "light" variant = white logo on dark bg (footer)
-  const src = variant === "light"
-    ? "/signal-house-logo-white.png"
-    : "/signal-house-logo.png";
+  const { src, width, height, size } = variant === "light"
+    ? { src: "/logos/footer-logo.png", width: 14791, height: 3305, size: "h-11" }
+    : { src: "/logos/updated-navbar-trimmed.png", width: 1200, height: 232, size: "h-8 md:h-9" };
 
   return (
     <Link href="/" aria-label="Signal House home" className={`inline-flex items-center ${className}`}>
       <Image
         src={src}
         alt="Signal House"
-        width={708}
-        height={279}
-        className="h-11 w-auto object-contain rounded-none bg-transparent"
+        width={width}
+        height={height}
+        className={`${size} w-auto object-contain rounded-none bg-transparent`}
         priority
       />
     </Link>
