@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { Icon } from "@/components/Icons";
 import { useAuditModal } from "@/context/AuditModalContext";
+import { trackEvent } from "@/lib/analytics";
 import { INTRO_VIDEO_STEPS } from "@/lib/content";
 import type { IntroAction } from "@/lib/content";
 
@@ -209,6 +210,7 @@ export function IntroVideoWidget() {
     if (action.type === "step") return goTo(action.to);
     if (action.type === "book") {
       videoRef.current?.pause();
+      trackEvent("book_call_click", { link_text: "intro_video_widget", page_path: window.location.pathname });
       window.open(CAL_URL, "_blank", "noopener,noreferrer");
       return;
     }

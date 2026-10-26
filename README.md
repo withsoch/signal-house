@@ -91,6 +91,12 @@ NEXT_PUBLIC_SCHEDULER_URL=https://calendly.com/your-handle/discovery-call
 Restart `npm run dev` after adding it. Works with Calendly, TidyCal, or any
 embeddable scheduler URL.
 
+### Google Analytics (GA4)
+
+GA4 loads only when `NEXT_PUBLIC_GA_ID` is set (e.g. `G-XXXXXXXXXX`); unset, nothing
+loads. Custom events: `generate_lead` (audit form submitted), `audit_form_open`, and
+`book_call_click` (any Cal.com booking link). See `lib/analytics.ts`.
+
 ### Styling
 
 Tailwind CSS v4 - utility classes in JSX. Custom colours/tokens (e.g. `bg-brand`,

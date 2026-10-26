@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuditModal } from "@/context/AuditModalContext";
+import { trackEvent } from "@/lib/analytics";
 
 type FormData = {
   firstName: string;
@@ -35,6 +36,10 @@ export function AuditModal() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [isOpen, closeModal]);
+
+  useEffect(() => {
+    if (isOpen) trackEvent("audit_form_open", { page_path: window.location.pathname });
+  }, [isOpen]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -86,6 +91,7 @@ export function AuditModal() {
         }),
       });
       if (res.ok) {
+        trackEvent("generate_lead", { form_name: "linkedin_audit" });
         closeModal();
         router.push("/confirmation");
       } else {

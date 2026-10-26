@@ -15,14 +15,14 @@ export function BookAutoOpen() {
       window.open(CAL_URL, "_blank", "noopener,noreferrer");
       const url = new URL(window.location.href);
       url.searchParams.delete("book");
-      window.history.replaceState({}, "", url.pathname);
+      window.history.replaceState({}, "", url.pathname + url.search + url.hash);
     }
 
     if (params.get("audit") === "true") {
       openAuditModal();
       const url = new URL(window.location.href);
       url.searchParams.delete("audit");
-      window.history.replaceState({}, "", url.pathname);
+      window.history.replaceState({}, "", url.pathname + url.search + url.hash);
     }
   }, [openAuditModal]);
 

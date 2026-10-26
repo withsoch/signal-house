@@ -8,6 +8,9 @@ import { AuditModalProvider } from "@/context/AuditModalContext";
 import { AuditModal } from "@/components/AuditModal";
 import { BookAutoOpen } from "@/components/BookAutoOpen";
 import { IntroVideoWidget } from "@/components/IntroVideoWidget";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { AnalyticsEvents } from "@/components/AnalyticsEvents";
+import { GA_ID } from "@/lib/analytics";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -93,7 +96,9 @@ export default function RootLayout({
           <AuditModal />
           <IntroVideoWidget />
         </AuditModalProvider>
+        {GA_ID && <AnalyticsEvents />}
       </body>
+      {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
     </html>
   );
 }
