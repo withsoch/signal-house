@@ -33,6 +33,7 @@ export function Footer() {
                 {s.title.replace("LinkedIn ", "")}
               </FooterLink>
             ))}
+            <FooterLink href="/linkedin-ads">LinkedIn Ads</FooterLink>
           </FooterCol>
 
           <FooterCol title="Get started">

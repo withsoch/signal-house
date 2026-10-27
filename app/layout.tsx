@@ -8,6 +8,7 @@ import { AuditModalProvider } from "@/context/AuditModalContext";
 import { AuditModal } from "@/components/AuditModal";
 import { BookAutoOpen } from "@/components/BookAutoOpen";
 import { IntroVideoWidget } from "@/components/IntroVideoWidget";
+import { SiteChrome } from "@/components/SiteChrome";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { AnalyticsEvents } from "@/components/AnalyticsEvents";
 import { GA_ID } from "@/lib/analytics";
@@ -90,9 +91,9 @@ export default function RootLayout({
         />
         <AuditModalProvider>
           <BookAutoOpen />
-          <Header />
+          <SiteChrome><Header /></SiteChrome>
           <main className="flex-1">{children}</main>
-          <Footer />
+          <SiteChrome><Footer /></SiteChrome>
           <AuditModal />
           <IntroVideoWidget />
         </AuditModalProvider>
