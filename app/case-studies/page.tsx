@@ -54,19 +54,6 @@ const CARDS = [
     href: "/case-studies/shahzad-akhtar",
   },
   {
-    initials: "Kaitlin Malaspina - Brenna & Co.",
-    image: "/Kaitlin Malaspina.jpg",
-    tags: ["Business Architecture"],
-    title:
-      "Making a distinctive offer legible: how a Private Operating House built the channel to match the work",
-    stats: [
-      { value: "3×", label: "Profile Views in 60 Days" },
-      { value: "22%", label: "Outreach Reply Rate" },
-      { value: "8", label: "Qualified Conversations" },
-    ],
-    href: "/case-studies/kaitlin-malaspina",
-  },
-  {
     initials: "Ayda Ahmed - Climate Tech Outreach",
     image: "/Ayda Ahmed.jpg",
     tags: ["Climate Tech"],
@@ -126,19 +113,19 @@ export default function CaseStudiesPage() {
           </Reveal>
         </div>
         <div className="hidden md:block" style={{ flex: "0 0 48%", maxWidth: "520px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "1fr 1fr", gap: "8px", width: "100%", height: "100%", minHeight: "380px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", width: "100%" }}>
             {[
               { src: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb631aa9fc98e79ae2810_1714512298914.jpg", alt: "Gaia Ferrero" },
               { src: "https://cdn.prod.website-files.com/68e7ded517d0693d2c345250/6a2fb8c5358ef1ae4b6b238c_1674503443215.jpg", alt: "Biola Babawale" },
               { src: "/Shahzad Akhtar.jpg", alt: "Shahzad Akhtar" },
-              { src: "/Kaitlin Malaspina.jpg", alt: "Kaitlin Malaspina" },
+              { src: "/Ayda Ahmed.jpg", alt: "Ayda Ahmed" },
             ].map((f, i) => (
               <AnimateIn key={f.alt} delay={i * 100} direction="up">
-                <div style={{ overflow: "hidden", borderRadius: "12px", minHeight: 0 }}>
+                <div style={{ position: "relative", overflow: "hidden", borderRadius: "12px", aspectRatio: "1 / 1" }}>
                   <PortraitImg
                     src={f.src}
                     alt={f.alt}
-                    style={{ width: "100%", height: "100%", minHeight: "200px", objectFit: "cover", objectPosition: "center top", display: "block" }}
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block" }}
                   />
                 </div>
               </AnimateIn>

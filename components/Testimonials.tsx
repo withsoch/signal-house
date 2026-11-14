@@ -200,7 +200,7 @@ export function Testimonials() {
   }, [isDesktop]);
 
   // Below lg the thumbnail strip scrolls: keep the active one leading,
-  // without moving the page. On desktop all seven fit in one row.
+  // without moving the page. On desktop all six fit in one row.
   useEffect(() => {
     if (firstRender.current) {
       firstRender.current = false;

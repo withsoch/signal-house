@@ -278,27 +278,6 @@ export const CASE_STUDIES: CaseStudy[] = [
     href: "/case-studies/shahzad-akhtar",
   },
   {
-    company: "Brenna & Co.",
-    industry: "Business Architecture · United States",
-    region: "United States",
-    duration: "12 weeks",
-    scope: "LinkedIn strategy & outreach",
-    metrics: [
-      { value: "3×", label: "Profile views growth (60 days)" },
-      { value: "22%", label: "Outreach reply rate" },
-      { value: "8", label: "Qualified founder conversations" },
-      { value: "100%", label: "Posting consistency maintained" },
-    ],
-    quote:
-      "Signal House fixed that. And they did it without changing what Brenna and Co. is. They just made it visible to the right people at the right moment.",
-    author: "Kaitlin Malaspina",
-    authorRole: "Principal & Founder, Brenna & Co.",
-    accent: "#4a2c6e",
-    initials: "BC",
-    image: "/Kaitlin Malaspina.jpg",
-    href: "/case-studies/kaitlin-malaspina",
-  },
-  {
     company: "Climate Tech Outreach",
     industry: "Climate Tech & Decarbonisation · Australia",
     region: "Australia",
