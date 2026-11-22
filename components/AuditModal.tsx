@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuditModal } from "@/context/AuditModalContext";
 import { trackEvent } from "@/lib/analytics";
+import { playNudge, playScan, playSuccess } from "@/lib/sound";
 
 type FormData = {
   firstName: string;
@@ -73,9 +74,11 @@ export function AuditModal() {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) {
+      playNudge();
       setErrors(errs);
       return;
     }
+    playScan();
     setSubmitting(true);
     setSubmitError("");
     try {
@@ -93,6 +96,7 @@ export function AuditModal() {
       });
       if (res.ok) {
         trackEvent("generate_lead", { form_name: "linkedin_audit" });
+        playSuccess();
         closeModal();
         router.push("/confirmation");
       } else {

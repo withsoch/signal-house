@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuditModal } from "@/context/AuditModalContext";
+import { playChime } from "@/lib/sound";
 
 type Variant = "primary" | "secondary" | "dark" | "light";
 type Size = "md" | "lg";
@@ -33,7 +34,7 @@ export function AuditButton({
   const { openModal } = useAuditModal();
   const cls = `group inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors duration-200 ${variants[variant]} ${sizes[size]} ${className}`;
   return (
-    <button type="button" onClick={openModal} className={cls}>
+    <button type="button" onClick={() => { playChime(); openModal(); }} className={cls}>
       {children}
     </button>
   );

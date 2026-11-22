@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { Reveal } from "@/components/ui/Reveal";
 import { StatCounter } from "@/components/StatCounter";
 import { Icon } from "@/components/Icons";
+import { playOpen, playTick } from "@/lib/sound";
 import { PortraitImg } from "@/components/PortraitImg";
 import { CASE_STUDIES, type CaseStudy } from "@/lib/content";
 
@@ -93,6 +94,7 @@ function ResultCard({
       }}
       onMouseLeave={() => clearTimeout(hoverTimer.current)}
       onFocus={onActivate}
+      onClick={playOpen}
       className={`${className} group relative isolate flex aspect-[3/4] w-[80%] shrink-0 snap-start flex-col overflow-hidden rounded-3xl text-white ring-1 ring-white/10 transition-[flex-grow,box-shadow] duration-500 ease-out hover:shadow-[0_30px_60px_-30px_var(--color-brand)] sm:w-[46%] lg:aspect-auto lg:w-auto ${active ? "lg:flex-[1.9] lg:shadow-[0_30px_60px_-30px_var(--color-brand)]" : "lg:flex-1"}`}
     >
       <div className="absolute inset-0 -z-10 overflow-hidden" style={{ background: cs.accent }}>
@@ -235,6 +237,16 @@ export function Testimonials() {
   }
 
   const step = (d: number) => show((active + d + N) % N);
+
+  // Tick once each time a different card takes the lead (hover, arrows or swipe).
+  const tickReady = useRef(false);
+  useEffect(() => {
+    if (!tickReady.current) {
+      tickReady.current = true;
+      return;
+    }
+    playTick(active);
+  }, [active]);
 
   return (
     <section id="results" className="relative scroll-mt-20 overflow-hidden bg-forest py-20 sm:py-24 lg:py-28">

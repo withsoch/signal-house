@@ -1,4 +1,7 @@
+"use client";
+
 import { Icon } from "@/components/Icons";
+import { playChime } from "@/lib/sound";
 
 type Variant = "primary" | "secondary" | "dark" | "light";
 type Size = "md" | "lg";
@@ -38,6 +41,7 @@ export function BookButton({
       href={CAL_URL}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={playChime}
       className={cls}
     >
       {children}
